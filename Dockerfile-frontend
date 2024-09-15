@@ -59,7 +59,7 @@ ENV VERSION_NUMBER=$VERSION_NUMBER_ARG
 ENV TZ=Europe/Zurich
 
 # Открываем порт 80 для доступа к приложению
-EXPOSE 8010
+EXPOSE 8082
 
 # Команда для запуска Angular приложения с использованием ng serve
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8010"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8082"]
