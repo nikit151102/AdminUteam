@@ -1,0 +1,634 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 100px;
+    box-sizing: border-box;
+    gap: 2rem;
+}
+
+.contacts {
+    padding-top: 1rem;
+    margin-left: 25px;
+}
+
+.first-part {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.information,
+.contacts {
+    flex: 1;
+}
+
+.skeleton-tag {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.title {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 140%;
+    color: var(--font-color);
+}
+
+.titleActive {
+    color: #fff !important;
+}
+
+.archiveMessage {
+    color: #959292 !important;
+}
+
+.ProfileChapter {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem 2rem 0px 25px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.fullName {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.information-user {
+    margin-top: 1rem;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 117%;
+    color: var(--font-color);
+    margin-left: 25px;
+}
+
+.personal-details {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 1rem;
+    color: var(--font-color);
+    margin-left: 25px;
+}
+
+p {
+    margin: 0;
+}
+
+.location,
+.age {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 117%;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chapterCard-title {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.contacts-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 20px;
+    padding: 6px 12px 6px 8px;
+    background: #e2e2e2;
+
+}
+
+.contacts-item:hover {
+    background: #B9AEFF;
+}
+
+
+.contacts-item img {
+    object-fit: contain;
+}
+
+.contacts-item p {
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 120%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #101010;
+}
+
+
+.date_registration {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+    margin-right: 25px;
+}
+
+.date_registration .title {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.message-profile {
+    border: 1px solid #fff25f;
+    border-radius: 20px;
+    padding: 24px;
+    background: #FFF25F;
+}
+
+.title-message {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: #101010;
+}
+
+.text-message {
+    width: 75%;
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 117%;
+    color: #101010;
+}
+
+
+/* резюме и вакансии */
+
+.second-path {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.container-resume,
+.container-vacancy {
+    border-radius: 1.5rem;
+    background: #806bff;
+}
+
+.title-cards {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: var(--font-color);
+    padding: 2rem 0 2rem 2.2rem;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}
+
+.archive-resume,
+.archive-vacancy {
+    border-radius: 1.5rem;
+    background: var(--background-archive);
+}
+
+
+.message-cards {
+    padding: 0 0 1rem 2.2rem;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-color);
+}
+
+.logoImg {
+    width: 6vw;
+    border-radius: 50%
+}
+
+.container-resume-header,
+.container-vacancy-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.container-resume-header-newCards,
+.container-vacancy-header-newCards {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    padding: 15px;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    max-width: 200px;
+    height: 38px;
+    background: #84dd2c;
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 117%;
+    color: #fff;
+}
+
+.container-resume-header-newCards:hover,
+.container-vacancy-header-newCards:hover {
+    background: #B9AEFF;
+}
+
+.menuProfile {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin: 0 auto;
+    width: 60%;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.menuProfile a {
+    flex: 1;
+    background: #e2e2e2;
+    border-radius: 2rem;
+    padding: 0.8rem 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #101010;
+}
+
+.menuProfile a:hover {
+    background: #b9aeff;
+}
+
+.block-switchCards {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.switchCards {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 114%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: var(--font-color);
+}
+
+.switchCards:hover {
+    color: #676768;
+}
+
+
+
+.phone-btns,
+.phoneDate {
+    display: none;
+}
+
+.phone-btns-edit {
+    width: 100%;
+}
+
+.phone-btns-create {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.phone-btns-create a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.phone-btns-edit a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 300px;
+    padding: 8px 12px;
+    width: 100%;
+    height: 40px;
+    background: #e2e2e2;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #101010;
+}
+
+.phone-btns-edit a:hover {
+    background: #b9aeff;
+}
+
+.additionalBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 44px;
+    gap: 0.5rem;
+    border-radius: 30px;
+    background: #84DD2C;
+    padding: 1rem;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.additionalBtn:hover {
+    background: #5A4BB8;
+}
+
+
+.container-cards {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+@media (max-width: 1198px) {
+
+    .container-resume-header-newCards,
+    .container-vacancy-header-newCards {
+        display: none;
+    }
+}
+
+/* Media queries for tablets */
+@media (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+
+    .text-message {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 0.8rem;
+    }
+
+    .ProfileChapter {
+        padding: 1rem 1.5rem 0px 1.5rem;
+    }
+
+    .fullName {
+        font-size: 1rem;
+    }
+
+    .information-user {
+        font-size: 0.9rem;
+
+    }
+
+    .title-cards {
+        font-size: 0.9rem;
+        padding: 1.5rem 1.8rem;
+    }
+
+    .cards {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .menuProfile {
+        width: 100%;
+    }
+
+}
+
+/* Media queries for phones */
+@media (max-width: 768px) {
+    .phone-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .contacts {
+        margin-left: 0;
+    }
+
+    .phone-btns-create a {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .desktopDate,
+    .desktop-edit-profile {
+        display: none !important;
+    }
+
+    .phoneDate {
+        display: flex;
+        margin-left: 10px;
+    }
+
+    .container-cards {
+        gap: 1rem;
+    }
+
+
+    .information-user {
+        margin-left: 10px;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .logoImg {
+        width: 100% !important;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+
+    .second-path {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .first-part {
+        margin: 1rem;
+        width: 95%;
+        flex-direction: column;
+        gap: 1rem;
+
+    }
+
+    .personal-details {
+        margin-left: 10px;
+    }
+
+    .ProfileChapter {
+        padding: 0 1rem 0px 0.5rem;
+    }
+
+    .fullName {
+        font-size: 1rem;
+        ;
+    }
+
+    .information-user {
+        font-size: 0.8rem;
+    }
+
+
+    .cards {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        padding-bottom: 0.3rem;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .date_registration {
+        margin-top: 1rem;
+        justify-content: end;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 0.7rem;
+    }
+
+    .date_registration span {
+        font-size: 0.7rem;
+    }
+
+    .menuProfile {
+        flex-direction: column;
+    }
+
+    .chapterCard-title {
+        font-size: 0.7rem;
+        font-weight: 500;
+    }
+
+    .information-user,
+    .location-value {
+        font-size: 0.9rem;
+    }
+
+    .container-resume,
+    .container-vacancy {
+        padding-bottom: 1.5rem;
+    }
+
+    .title-cards {
+        font-size: 0.7rem;
+        padding: 0.8rem 1rem;
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+
+
+/* Media queries for small phones */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 0.7rem;
+    }
+
+    .chapterCard-title {
+        font-size: 0.7rem;
+        font-weight: 500;
+    }
+
+    .ProfileChapter {
+        padding: 0.5rem 0.5rem 0px 0.5rem;
+    }
+
+    .information-user,
+    .location-value {
+        font-size: 0.9rem;
+    }
+
+    .fullName {
+        font-size: 1rem;
+        ;
+    }
+}
+
+@media (max-width: 390px) {
+    .phone-btns-create a {
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+}

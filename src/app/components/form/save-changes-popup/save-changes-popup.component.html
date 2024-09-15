@@ -1,0 +1,10 @@
+<div class="popup-overlay" *ngIf="saveChangesPopupService.visible$ | async">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <p class="popup-title">У вас есть неопубликованный черновик</p>
+        <p class="popup-subtitle">Хотите продолжить или начать сначала?</p>
+        <div class="btns">
+            <a class="popup-btn-edit" (click)="editDraft()">Продолжить</a>
+            <a class="popup-delete-draft" (click)="deleteDraft()">Начать заново</a>
+        </div>
+
+    </div>

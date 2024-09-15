@@ -1,0 +1,16 @@
+<div class="popup-overlay">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <div class="close-button" (click)="cancel()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 5L18 18M5.0002 18L18 5" stroke="#333334" stroke-opacity="0.3" stroke-width="1.4"
+                    stroke-linecap="round" />
+            </svg>
+        </div>
+        <p class="popup-title">выйти из аккаунта</p>
+        <p class="popup-subtitle">Вы уверенны, что хотите выйти из аккаунта?</p>
+        <div class="btns">
+            <a class="popup-btn-exit" (click)="exitAccount()">Выйти из аккаунта</a>
+            <a class="popup-cancel" (click)="cancel()">Отменить</a>
+        </div>
+    </div>
+</div>

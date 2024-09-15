@@ -1,0 +1,41 @@
+<div class="conteiner">
+    <div class="content">
+        <div class="title">
+            <h3>Новое уведомление</h3>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <span class="p-float-label">
+                <input pInputText id="username"  style="width: 100%;"/>
+                <label for="username">Заголовок</label>
+            </span>
+            <span class="p-float-label">
+                <input pInputText id="username"  style="width: 100%;"/>
+                <label for="username">Содержание</label>
+            </span>
+                
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between; gap: 0.5rem;">
+            <app-excel-reader class="excel" [nameFile]="'notifications'"></app-excel-reader>
+            <p-button icon="pi pi-save" ></p-button>
+        </div>
+       
+    </div>
+    <div class="content">
+        <div class="title">
+            <h3>История уведомлений</h3>
+        </div>
+        <div class="notificationItem">
+            <div *ngFor="let day of notifications" class="notifications">
+                <div class="title">
+                    <p class="dayOfWeek">{{ day.dayOfWeek }}, </p> 
+                    <p class="dayofmonth">{{ day.day }} {{ day.month }}</p>
+                </div>
+               
+                <div *ngFor="let notification of day.notifications" >
+                  <app-item-notifications [itemValue]="notification"></app-item-notifications>
+                </div>
+              </div>
+              
+        </div>
+    </div>
+</div>

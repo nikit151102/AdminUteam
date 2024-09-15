@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="listTags">
+        <ng-container *ngFor="let tag of selectedTags">
+            <div class="tag">
+                <div class="motivationTag selectTag" [style.background]="getSkillsColor(tag.name)">
+                    {{ tag.name }}
+                </div>
+                <a (click)="deleteTag(tag)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4"
+                            stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="listTags">
+        <ng-container *ngFor="let tag of tagsList">
+            <div class="motivationTag notSelectedTag" [style.background]="'#E2E2E2'" (click)="selectTag(tag)">
+                {{ tag.name }}
+            </div>
+        </ng-container>
+    </div>
+
+    <div *ngIf="isPaymentInputVisible && isPayment" class="payment-input">
+        <label for="payment">Оплата от:</label>
+        <input type="number" id="payment" (input)="onPaymentAmountChange($event)" [value]="paymentAmount" />
+    </div>
+</div>

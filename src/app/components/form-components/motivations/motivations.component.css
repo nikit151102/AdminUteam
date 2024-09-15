@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.motivationTag {
+    border-radius: 1.3rem;
+    padding: 8px 10px;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+
+}
+
+.notSelectedTag{
+    color: #000000;
+}
+
+.selectTag {
+    color: #fff;
+}
+
+.listTags {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap
+}
+
+.tag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-Monts);
+}
+
+
+
+
+.payment-input {
+    border-radius: 12px;
+    padding-top: 16px;
+    width: 100%;
+    outline: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 140%;
+    flex-direction: column;
+}
+
+.payment-input label {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.payment-input input {
+    width: 100%;
+    border: 1px solid #e2e2e2;
+    border-radius: 1rem;
+    padding: 16px;
+    height: 46px;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 140%;
+    outline: none;
+}
+.payment-input input::placeholder {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 140%;
+}

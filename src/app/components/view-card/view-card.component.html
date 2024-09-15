@@ -1,0 +1,154 @@
+<div class="container" *ngIf="visibleCard && !visibleError" @fadeAnimation>
+    <div class="left-part">
+
+        <ng-container *ngIf="typeCard == 'vacancies'" >
+            <app-vacancy [data]="dataCard"></app-vacancy>
+        </ng-container>
+        <ng-container *ngIf="typeCard == 'resumes'" >
+            <app-resume [data]="dataCard"></app-resume>
+        </ng-container>
+    </div>
+    <div class="right-path">
+        <div class="right-path-content">
+            <div class="ProfileChapter">
+                <div class="logo">
+                    <ng-container *ngIf="dataCard?.user?.imageLink">
+                        <img [src]="'assets/avatars/'+ dataCard?.user?.imageLink + '.png'" alt="avatar"
+                            style="width:92px; height:92px" class="logoImg">
+                    </ng-container>
+                    <ng-container *ngIf="!dataCard?.user?.imageLink">
+                        <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:92px; height:92px"
+                            class="logoImg">
+                    </ng-container>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column;">
+
+                    <p class="fullName">
+                        {{dataCard?.user?.lastName}}
+                    </p>
+                    <p class="fullName">
+                        {{dataCard?.user?.firstName}}
+                    </p>
+                </div>
+            </div>
+
+
+            <ng-container *ngIf="tokenService.getToken()">
+                <div class="contacts">
+                    <div *ngIf="dataCard?.user?.freeLink">
+                        <p class="chapterCard-title">
+                            Кейсы:
+                        </p>
+                        <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+
+                            <a class="contacts-item" [href]="dataCard?.user?.freeLink">
+                                <img [src]="imagePath" alt="logo" width="24px">
+                                <p>{{domainName}}</p>
+                            </a>
+
+                        </diV>
+                    </div>
+                    <div *ngIf="dataCard?.user?.telegram">
+                        <p class="chapterCard-title">
+                            Контакты:
+                        </p>
+                        <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+                            <a class="contacts-item" [href]="'https://t.me/' + dataCard?.user?.telegram"
+                                target="_blank">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_669_1177)">
+                                        <path
+                                            d="M12 0C8.81812 0 5.76375 1.26506 3.51562 3.51469C1.26518 5.76521 0.000623381 8.81734 0 12C0 15.1813 1.26562 18.2357 3.51562 20.4853C5.76375 22.7349 8.81812 24 12 24C15.1819 24 18.2362 22.7349 20.4844 20.4853C22.7344 18.2357 24 15.1813 24 12C24 8.81869 22.7344 5.76431 20.4844 3.51469C18.2362 1.26506 15.1819 0 12 0Z"
+                                            fill="url(#paint0_linear_669_1177)" />
+                                        <path
+                                            d="M5.43282 11.874C8.93157 10.35 11.2641 9.34521 12.4303 8.85977C15.7641 7.47359 16.4559 7.23284 16.9078 7.22468C17.0072 7.22309 17.2284 7.24765 17.3728 7.36437C17.4928 7.46281 17.5266 7.59593 17.5434 7.6894C17.5584 7.78277 17.5791 7.99559 17.5622 8.16171C17.3822 10.0592 16.6003 14.6638 16.2028 16.7891C16.0359 17.6884 15.7041 17.9899 15.3834 18.0193C14.6859 18.0835 14.1572 17.5588 13.4822 17.1165C12.4266 16.4241 11.8303 15.9932 10.8047 15.3176C9.6197 14.5369 10.3884 14.1077 11.0634 13.4065C11.2397 13.2229 14.3109 10.4301 14.3691 10.1768C14.3766 10.1451 14.3841 10.027 14.3128 9.96471C14.2434 9.90227 14.1403 9.92365 14.0653 9.94052C13.9584 9.96452 12.2728 11.0798 9.00282 13.2861C8.52469 13.615 8.09157 13.7753 7.70157 13.7668C7.27407 13.7576 6.44907 13.5246 5.83595 13.3255C5.08595 13.0811 4.48782 12.952 4.54032 12.537C4.56657 12.321 4.8647 12.1 5.43282 11.874Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <linearGradient id="paint0_linear_669_1177" x1="1200" y1="0" x2="1200" y2="2400"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#2AABEE" />
+                                            <stop offset="1" stop-color="#229ED9" />
+                                        </linearGradient>
+                                        <clipPath id="clip0_669_1177">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                                <p>Telegram</p>
+                            </a>
+                            <a class="contacts-item" [href]="'mailto:' + dataCard?.user?.email" target="_blank" *ngIf="dataCard?.user?.email">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 22C10.6167 22 9.31667 21.7373 8.1 21.212C6.88334 20.6867 5.825 19.9743 4.925 19.075C4.025 18.1757 3.31267 17.1173 2.788 15.9C2.26333 14.6827 2.00067 13.3827 2 12C1.99933 10.6173 2.262 9.31733 2.788 8.1C3.314 6.88267 4.02633 5.82433 4.925 4.925C5.82367 4.02567 6.882 3.31333 8.1 2.788C9.318 2.26267 10.618 2 12 2C13.382 2 14.682 2.26267 15.9 2.788C17.118 3.31333 18.1763 4.02567 19.075 4.925C19.9737 5.82433 20.6863 6.88267 21.213 8.1C21.7397 9.31733 22.002 10.6173 22 12V13.45C22 14.4333 21.6627 15.271 20.988 15.963C20.3133 16.655 19.484 17.0007 18.5 17C17.9167 17 17.3667 16.875 16.85 16.625C16.3333 16.375 15.9 16.0167 15.55 15.55C15.0667 16.0333 14.5207 16.396 13.912 16.638C13.3033 16.88 12.666 17.0007 12 17C10.6167 17 9.43767 16.5123 8.463 15.537C7.48834 14.5617 7.00067 13.3827 7 12C6.99933 10.6173 7.487 9.43833 8.463 8.463C9.439 7.48767 10.618 7 12 7C13.382 7 14.5613 7.48767 15.538 8.463C16.5147 9.43833 17.002 10.6173 17 12V13.45C17 13.8833 17.1417 14.25 17.425 14.55C17.7083 14.85 18.0667 15 18.5 15C18.9333 15 19.2917 14.85 19.575 14.55C19.8583 14.25 20 13.8833 20 13.45V12C20 9.76667 19.225 7.875 17.675 6.325C16.125 4.775 14.2333 4 12 4C9.76667 4 7.875 4.775 6.325 6.325C4.775 7.875 4 9.76667 4 12C4 14.2333 4.775 16.125 6.325 17.675C7.875 19.225 9.76667 20 12 20H17V22H12ZM12 15C12.8333 15 13.5417 14.7083 14.125 14.125C14.7083 13.5417 15 12.8333 15 12C15 11.1667 14.7083 10.4583 14.125 9.875C13.5417 9.29167 12.8333 9 12 9C11.1667 9 10.4583 9.29167 9.875 9.875C9.29167 10.4583 9 11.1667 9 12C9 12.8333 9.29167 13.5417 9.875 14.125C10.4583 14.7083 11.1667 15 12 15Z"
+                                        fill="#806BFF" />
+                                </svg>
+        
+        
+                                <p>email</p>
+                            </a>
+                        </diV>
+                    </div>
+                </div>
+
+            </ng-container>
+
+
+            <ng-container *ngIf="!tokenService.getToken() && dataCard">
+                <div>
+                    <p class="titleLogin" style="margin-bottom: 0;">
+                        Контакты доступны только авторизированным пользователям.
+                    </p>
+                    <a (click)="enter()" class="btnLogin">
+                        Войти
+                    </a>
+                </div>
+
+            </ng-container>
+
+        </div>
+
+        <div>
+
+            <a [href]="viewUser()" class="btnAccount_user" target="_blank"
+                *ngIf="!currentUser || currentUser.id !== dataCard.user.id && dataCard">
+                В аккаунт пользователя
+                <p style="margin: 0">
+                    <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M38.495 6.49497C38.7683 6.22161 38.7683 5.77839 38.495 5.50503L34.0402 1.05025C33.7668 0.776886 33.3236 0.776886 33.0503 1.05025C32.7769 1.32362 32.7769 1.76684 33.0503 2.0402L37.0101 6L33.0503 9.9598C32.7769 10.2332 32.7769 10.6764 33.0503 10.9497C33.3236 11.2231 33.7668 11.2231 34.0402 10.9497L38.495 6.49497ZM0 6.7H38V5.3H0L0 6.7Z"
+                            fill="white" />
+                    </svg>
+                </p>
+            </a>
+            <ng-container *ngIf="tokenService.getToken()">
+                <ng-container *ngIf="currentUser && currentUser.id === dataCard.user.id">
+                    <div class="menu_btn">
+                        <a (click)="setArchive($event)">
+                            В архив
+                        </a>
+                        <a (click)="update($event, dataCard?.id)">
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M7.75 3.00004H2.75C2.21957 3.00004 1.71086 3.21075 1.33579 3.58583C0.960714 3.9609 0.75 4.46961 0.75 5.00004V16C0.75 16.5305 0.960714 17.0392 1.33579 17.4143C1.71086 17.7893 2.21957 18 2.75 18H13.75C14.2804 18 14.7891 17.7893 15.1642 17.4143C15.5393 17.0392 15.75 16.5305 15.75 16V11M14.336 1.58604C14.5205 1.39502 14.7412 1.24266 14.9852 1.13784C15.2292 1.03302 15.4916 0.977847 15.7572 0.975539C16.0228 0.973232 16.2861 1.02384 16.5319 1.1244C16.7777 1.22496 17.001 1.37346 17.1888 1.56125C17.3766 1.74904 17.5251 1.97234 17.6256 2.21813C17.7262 2.46392 17.7768 2.72728 17.7745 2.99284C17.7722 3.2584 17.717 3.52084 17.6122 3.76485C17.5074 4.00886 17.355 4.22955 17.164 4.41404L8.578 13H5.75V10.172L14.336 1.58604Z"
+                                    stroke="#806BFF" stroke-width="1.4" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Редактировать
+                        </a>
+                    </div>
+                </ng-container>
+
+
+            </ng-container>
+
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="!visibleCard && !visibleError">
+    <app-error-view-card></app-error-view-card>>
+</ng-container>

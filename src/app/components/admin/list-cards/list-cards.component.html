@@ -1,0 +1,44 @@
+<div class="card">
+
+    <p-table [value]="Service.products" [rows]="rowsPerPage" [paginator]="true" [totalRecords]="totalUsers" [pageLinks]="5" [rowsPerPageOptions]="[3, 10, 25, 50, 100]" [sortField]="sortField" [sortOrder]="sortOrder">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="id" style="width:10%">
+                    ID <p-sortIcon field="id" />
+                </th>
+                <th style="width:15%">
+                    Логин  
+                </th>
+                <th pSortableColumn="title" style="width:15%" *ngIf="Service.type !== 'RESUME'">
+                    Название  
+                </th>
+                <th pSortableColumn="lastName" style="width:15%">
+                    Специальность 
+                </th>
+                <th pSortableColumn="dateOfRegistration" style="width:20%">
+                    Дата регистрации <p-sortIcon field="dateOfRegistration" />
+                </th>
+                <th style="width:15%">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{ product?.id }}</td>
+                <td *ngIf="product?.user?.nickname">{{ product?.user?.nickname }}</td>
+                <td *ngIf="!product?.user?.nickname">{{ product?.user?.id }}</td>
+                <td  *ngIf="Service.type !== 'RESUME'">{{ product?.title }}</td>
+                <td>{{ product?.profession?.name }}</td>
+                <td>{{ product.creationDate | date: 'dd/MM/yyyy' }}</td>
+                <td><a [href]="viewCard(product.id)" target="_blank">Перейти</a></td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginator">
+            <p-paginator [rows]="rowsPerPage" [totalRecords]="totalUsers" [rowsPerPageOptions]="[3, 10, 25, 50, 100]"></p-paginator>
+        </ng-template>
+    </p-table>
+    
+    <app-forms *ngIf="listCardsService.visibleForm" [editData]="editData" ></app-forms>
+    
+</div>
+

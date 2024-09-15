@@ -1,0 +1,81 @@
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.tag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #806bff;
+    border-radius: 10px;
+    padding: 4px 8px 4px 8px;
+    background: rgba(243, 243, 243, 0.1);
+}
+
+.tagText {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: #101010;
+    margin: 0;
+}
+
+.tag-level {
+    margin: 0;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+
+
+.chapterCard-title{
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+.chapterCard_title {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+.chapterCard_value {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: #101010;
+}
+.lookingCard {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start
+}
+
+.lookingCard_level {
+    margin: 0;
+    border: 2px solid #fad305;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: #101010;
+}

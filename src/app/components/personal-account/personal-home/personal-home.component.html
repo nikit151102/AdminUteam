@@ -1,0 +1,249 @@
+<div class="container" @fadeAnimation>
+    <div class="first-part">
+        <div class="information">
+            <div class="ProfileChapter">
+                <div class="logo" @fadeAnimation>
+                    <ng-container *ngIf="dataCurrentUser?.imageLink">
+                        <img [src]="'assets/avatars/'+ dataCurrentUser?.imageLink + '.png'" class="logoImg">
+                    </ng-container>
+                    <ng-container *ngIf="!dataCurrentUser?.imageLink">
+                        <img [src]="'assets/avatars/default.png'" alt="logo" class="logoImg">
+                    </ng-container>
+                </div>
+
+                <div @fadeAnimation
+                    style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column; justify-content: flex-end">
+                    <p class="fullName">
+                        {{dataCurrentUser?.lastName}}
+                    </p>
+                    <p class="fullName">
+                        {{dataCurrentUser?.firstName}}
+                    </p>
+                </div>
+            </div>
+            <div class="phoneDate">
+                <div class="date_registration">
+                    <p class="title">На платформе с </p>
+                    <span>
+                        {{ dataCurrentUser.dateOfRegistration | date: 'dd-MM-yyyy' }}
+                    </span>
+                </div>
+            </div>
+            <div class="information-user" *ngIf="isDataComplete">
+                {{dataCurrentUser.aboutMe}}
+            </div>
+            <div class="personal-details" *ngIf="isDataComplete">
+                <div class="location" *ngIf="dataCurrentUser.cityOfResidence ">
+                    <p class="title">Город:</p>
+                    <span class="location-value">{{dataCurrentUser.cityOfResidence.name}}</span>
+                </div>
+                <div class="age" *ngIf="dataCurrentUser.age ">
+                    <p class="title">Возраст:</p>
+                    <span class="location-value">{{dataCurrentUser.age}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="contacts" @fadeAnimation>
+            <div *ngIf="dataCurrentUser.freeLink && imagePath.length>0">
+                <p class="chapterCard-title">
+                    Кейсы:
+                </p>
+                <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+                    <a class="contacts-item" [href]="dataCurrentUser.freeLink">
+                        <img [src]="imagePath" alt="logo" width="24px" >
+                        <p>{{domainName}}</p>
+                    </a>
+                </diV>
+            </div>
+            <div style="margin-top: 15px;" *ngIf="dataCurrentUser.telegram">
+                <p class="chapterCard-title">
+                    Контакты:
+                </p>
+                <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+                    <a class="contacts-item" [href]="'https://t.me/' + dataCurrentUser.telegram" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_669_1177)">
+                                <path
+                                    d="M12 0C8.81812 0 5.76375 1.26506 3.51562 3.51469C1.26518 5.76521 0.000623381 8.81734 0 12C0 15.1813 1.26562 18.2357 3.51562 20.4853C5.76375 22.7349 8.81812 24 12 24C15.1819 24 18.2362 22.7349 20.4844 20.4853C22.7344 18.2357 24 15.1813 24 12C24 8.81869 22.7344 5.76431 20.4844 3.51469C18.2362 1.26506 15.1819 0 12 0Z"
+                                    fill="url(#paint0_linear_669_1177)" />
+                                <path
+                                    d="M5.43282 11.874C8.93157 10.35 11.2641 9.34521 12.4303 8.85977C15.7641 7.47359 16.4559 7.23284 16.9078 7.22468C17.0072 7.22309 17.2284 7.24765 17.3728 7.36437C17.4928 7.46281 17.5266 7.59593 17.5434 7.6894C17.5584 7.78277 17.5791 7.99559 17.5622 8.16171C17.3822 10.0592 16.6003 14.6638 16.2028 16.7891C16.0359 17.6884 15.7041 17.9899 15.3834 18.0193C14.6859 18.0835 14.1572 17.5588 13.4822 17.1165C12.4266 16.4241 11.8303 15.9932 10.8047 15.3176C9.6197 14.5369 10.3884 14.1077 11.0634 13.4065C11.2397 13.2229 14.3109 10.4301 14.3691 10.1768C14.3766 10.1451 14.3841 10.027 14.3128 9.96471C14.2434 9.90227 14.1403 9.92365 14.0653 9.94052C13.9584 9.96452 12.2728 11.0798 9.00282 13.2861C8.52469 13.615 8.09157 13.7753 7.70157 13.7668C7.27407 13.7576 6.44907 13.5246 5.83595 13.3255C5.08595 13.0811 4.48782 12.952 4.54032 12.537C4.56657 12.321 4.8647 12.1 5.43282 11.874Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <linearGradient id="paint0_linear_669_1177" x1="1200" y1="0" x2="1200" y2="2400"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#2AABEE" />
+                                    <stop offset="1" stop-color="#229ED9" />
+                                </linearGradient>
+                                <clipPath id="clip0_669_1177">
+                                    <rect width="24" height="24" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                        <p>Telegram</p>
+                    </a>
+                    <a class="contacts-item" [href]="'mailto:' + dataCurrentUser.email"  target="_blank" *ngIf="dataCurrentUser.email">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 22C10.6167 22 9.31667 21.7373 8.1 21.212C6.88334 20.6867 5.825 19.9743 4.925 19.075C4.025 18.1757 3.31267 17.1173 2.788 15.9C2.26333 14.6827 2.00067 13.3827 2 12C1.99933 10.6173 2.262 9.31733 2.788 8.1C3.314 6.88267 4.02633 5.82433 4.925 4.925C5.82367 4.02567 6.882 3.31333 8.1 2.788C9.318 2.26267 10.618 2 12 2C13.382 2 14.682 2.26267 15.9 2.788C17.118 3.31333 18.1763 4.02567 19.075 4.925C19.9737 5.82433 20.6863 6.88267 21.213 8.1C21.7397 9.31733 22.002 10.6173 22 12V13.45C22 14.4333 21.6627 15.271 20.988 15.963C20.3133 16.655 19.484 17.0007 18.5 17C17.9167 17 17.3667 16.875 16.85 16.625C16.3333 16.375 15.9 16.0167 15.55 15.55C15.0667 16.0333 14.5207 16.396 13.912 16.638C13.3033 16.88 12.666 17.0007 12 17C10.6167 17 9.43767 16.5123 8.463 15.537C7.48834 14.5617 7.00067 13.3827 7 12C6.99933 10.6173 7.487 9.43833 8.463 8.463C9.439 7.48767 10.618 7 12 7C13.382 7 14.5613 7.48767 15.538 8.463C16.5147 9.43833 17.002 10.6173 17 12V13.45C17 13.8833 17.1417 14.25 17.425 14.55C17.7083 14.85 18.0667 15 18.5 15C18.9333 15 19.2917 14.85 19.575 14.55C19.8583 14.25 20 13.8833 20 13.45V12C20 9.76667 19.225 7.875 17.675 6.325C16.125 4.775 14.2333 4 12 4C9.76667 4 7.875 4.775 6.325 6.325C4.775 7.875 4 9.76667 4 12C4 14.2333 4.775 16.125 6.325 17.675C7.875 19.225 9.76667 20 12 20H17V22H12ZM12 15C12.8333 15 13.5417 14.7083 14.125 14.125C14.7083 13.5417 15 12.8333 15 12C15 11.1667 14.7083 10.4583 14.125 9.875C13.5417 9.29167 12.8333 9 12 9C11.1667 9 10.4583 9.29167 9.875 9.875C9.29167 10.4583 9 11.1667 9 12C9 12.8333 9.29167 13.5417 9.875 14.125C10.4583 14.7083 11.1667 15 12 15Z"
+                                fill="#806BFF" />
+                        </svg>
+                        <p>email</p>
+                    </a>
+                </diV>
+            </div>
+            <div class="phone-btns" @fadeAnimation>
+                <div class="phone-btns-edit">
+                    <a (click)="getRouting()" style="padding: 0.67rem 1rem;">
+                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.5 3H3.5C2.96957 3 2.46086 3.21072 2.08579 3.58579C1.71071 3.96086 1.5 4.46957 1.5 5V16C1.5 16.5304 1.71071 17.0391 2.08579 17.4142C2.46086 17.7893 2.96957 18 3.5 18H14.5C15.0304 18 15.5391 17.7893 15.9142 17.4142C16.2893 17.0391 16.5 16.5304 16.5 16V11M15.086 1.586C15.2705 1.39498 15.4912 1.24262 15.7352 1.1378C15.9792 1.03298 16.2416 0.977809 16.5072 0.975501C16.7728 0.973194 17.0361 1.0238 17.2819 1.12436C17.5277 1.22492 17.751 1.37343 17.9388 1.56121C18.1266 1.749 18.2751 1.9723 18.3756 2.21809C18.4762 2.46389 18.5268 2.72725 18.5245 2.9928C18.5222 3.25836 18.467 3.5208 18.3622 3.76481C18.2574 4.00882 18.105 4.22951 17.914 4.414L9.328 13H6.5V10.172L15.086 1.586Z"
+                                stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Редактировать
+                    </a>
+                </div>
+                <div class="phone-btns-create">
+                    <a (click)="handlePostResume()" class="additionalBtn additional"> Разместить резюме </a>
+                    <a (click)="handlePostVacancy()" class="additionalBtn additional"> Разместить вакансию </a>
+                </div>
+            </div>
+
+            <div class="date_registration desktopDate">
+                <p class="title">На платформе с </p>
+                <span>
+                    {{ dataCurrentUser.dateOfRegistration | date: 'dd-MM-yyyy' }}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="message-profile" *ngIf="!isDataComplete" @fadeAnimation>
+        <p class="title-message">
+            Заполните свой профиль!
+        </p>
+
+        <p class="text-message">
+            Опишите себя, укажите ссылку на свои работы, чтобы другие пользователи понимали, с кем имеют дело.
+            Пользователи с заполненным профилем, значительно больше располагают к доверию.
+            Аккаунты с НЕзаполненным профилем - вызывают недоверие.
+        </p>
+
+    </div>
+    <div class="second-path">
+        <div class="container-cards">
+            <div class="container-resume" @fadeAnimation>
+                <div class="container-resume-header">
+                    <p class="title-cards titleActive ">
+                        Активные резюме:
+                    </p>
+                    <a class="container-resume-header-newCards" (click)="handlePostResume()" >
+                        + Добавить  резюме
+                    </a>
+                </div>
+                
+                <div class="cards">
+                    <app-personal-resume @fadeAnimation
+                        *ngFor="let itemResume of resumeService.filterResumes('CREATOR_ONLY')| slice:0:itemsToShowResume"
+                        [cardItem]="itemResume"></app-personal-resume>
+                    <div class="block-switchCards">
+                        <a (click)="toggleResumes()" *ngIf="resumeService.filterResumes('CREATOR_ONLY').length>3"
+                            class="switchCards">
+                            {{ showAllResume ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="message-cards titleActive" *ngIf="resumeService.filterResumes('CREATOR_ONLY').length==0">
+                    Нет активных резюме
+                </div>
+            </div>
+            <div class="archive-resume">
+                <p class="title-cards">
+                    Архив резюме:
+                </p>
+                
+                <div class="cards">
+                    <app-archive-resume @fadeAnimation
+                        *ngFor="let itemResume of resumeService.filterResumes('EVERYBODY') | slice:0:itemsToShowArchiveResume "
+                        [cardItem]="itemResume"></app-archive-resume>
+                    <div class="block-switchCards">
+                        <a (click)="toggleArchiveResumes()" *ngIf="resumeService.filterResumes('EVERYBODY').length>3"
+                            class="switchCards">
+                            {{ showAllArchiveResume ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="message-cards archiveMessage" *ngIf="resumeService.filterResumes('EVERYBODY').length==0">
+                    Архив пуст
+                </div>
+            </div>
+        </div>
+        <div class="container-cards" @fadeAnimation>
+            <div class="container-vacancy">
+                <div class="container-vacancy-header">
+                    <p class="title-cards titleActive ">
+                        Активные вакансии:
+                    </p>
+                    <a class="container-vacancy-header-newCards" (click)="handlePostVacancy()" >
+                        + Добавить  вакансию
+                    </a>
+                </div>
+                <div class="cards">
+                    <app-personal-vacancy @fadeAnimation
+                        *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY') | slice:0:itemsToShowVacancies"
+                        [item]="itemVacancy">
+                    </app-personal-vacancy>
+                    <div class="block-switchCards">
+                        <a (click)="toggleVacancies()" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length>3"
+                            class="switchCards">
+                            {{ showAllVacancies ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="message-cards titleActive" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length==0">
+                    Нет активных вакансий
+                </div>
+            </div>
+            <div class="archive-vacancy">
+                <p class="title-cards">
+                    Архив вакансий:
+                </p>
+                <div class="cards">
+                    <app-archive-vacancy [cardItem]="itemVacancy" @fadeAnimation
+                        *ngFor="let itemVacancy of vacancyService.filterVacancies('EVERYBODY') | slice:0:itemsToShowArchiveVacancies"></app-archive-vacancy>
+                    <div class="block-switchCards">
+                        <a (click)="toggleArchiveVacancies()"
+                            *ngIf="vacancyService.filterVacancies('EVERYBODY').length>3" class="switchCards">
+                            {{ showAllArchiveVacancies ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="message-cards archiveMessage" *ngIf="vacancyService.filterVacancies('EVERYBODY').length==0">
+                    Архив пуст
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menuProfile">
+        <a (click)="deleteUser()">
+            Удалить профиль
+        </a>
+        <a (click)="exitAccount()">
+            Выйти из аккаунта
+        </a>
+        <a (click)="getRouting()" style="padding: 0.67rem 1rem;" class="desktop-edit-profile">
+            <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M8.5 3H3.5C2.96957 3 2.46086 3.21072 2.08579 3.58579C1.71071 3.96086 1.5 4.46957 1.5 5V16C1.5 16.5304 1.71071 17.0391 2.08579 17.4142C2.46086 17.7893 2.96957 18 3.5 18H14.5C15.0304 18 15.5391 17.7893 15.9142 17.4142C16.2893 17.0391 16.5 16.5304 16.5 16V11M15.086 1.586C15.2705 1.39498 15.4912 1.24262 15.7352 1.1378C15.9792 1.03298 16.2416 0.977809 16.5072 0.975501C16.7728 0.973194 17.0361 1.0238 17.2819 1.12436C17.5277 1.22492 17.751 1.37343 17.9388 1.56121C18.1266 1.749 18.2751 1.9723 18.3756 2.21809C18.4762 2.46389 18.5268 2.72725 18.5245 2.9928C18.5222 3.25836 18.467 3.5208 18.3622 3.76481C18.2574 4.00882 18.105 4.22951 17.914 4.414L9.328 13H6.5V10.172L15.086 1.586Z"
+                    stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Редактировать
+        </a>
+    </div>
+</div>
+
+
+<app-pop-up-delete *ngIf="isPopupVisible"></app-pop-up-delete>
+<app-pop-up-exit *ngIf="isExitPopupVisible"></app-pop-up-exit>

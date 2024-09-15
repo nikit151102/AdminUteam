@@ -1,0 +1,43 @@
+p{
+    margin: 0;
+}
+
+:host ::ng-deep .p-orderlist-controls {
+    display: none !important;
+}
+
+.createStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content:  space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.btnsSetting {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.horiz {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.valueItem {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+
+@media (max-width: 491.98px) {
+
+    span {
+        width: 100%;
+    }
+  
+}

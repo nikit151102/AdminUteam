@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="chapterCard">
+        <p class="chapterCard-title" style="margin-bottom: 0;">
+            Специальность:
+        </p>
+        <div class="lookingCard">
+            <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%;">
+                {{ getSpecialization() }}
+            </p>
+            <p [ngStyle]="{ 'border-color': getSkillsColor(data.profession.competenceLevel) } " *ngIf="data.profession.competenceLevel"
+                class="lookingCard-level">
+                {{ getSkills(data.profession?.competenceLevel) }}
+            </p>
+        </div>
+        <div class="lookingCard">
+            <p class="chapterCard-value-eng">
+                {{ data?.profession?.nameEng | uppercase }}
+            </p>
+        </div>
+    </div>
+
+    <div class="chapterCard">
+        <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
+            Навыки:
+        </p>
+        <div class="tags">
+            <ng-container *ngFor="let skill of data.skills">
+                <div class="tag">
+                    <p class="tagText">
+                        {{skill.name}}
+                    </p>
+                    <p [ngStyle]="{ 'background': getSkillsColor(skill.competenceLevel) }" class="tag-level">
+                        {{ getSkillText(skill.competenceLevel) }}
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="chapterCard">
+        <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
+            Мотивация:
+        </p>
+        <div class="motivations">
+            <ng-container *ngFor="let motivation of data.motivations">
+                <div class="motivation" [ngStyle]="{ 'background': getMotivationColor(motivation.name) }">
+                    {{ motivation.name || 'Не указана' }}
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="chapterCard">
+        <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
+            Описание:
+        </p>
+        <div class="description">
+            {{ data.details || 'Нет описания' }}
+        </div>
+    </div>
+
+    <div class="profile">
+        <div class="rightProfileChapter">
+            <p class="dateVacancy dateTitle">
+                размещено
+            </p>
+            <p class="dateVacancy dateValue">
+                {{ data.creationDate | date: 'dd.MM.yyyy' }}
+            </p>
+        </div>
+    </div>
+
+</div>

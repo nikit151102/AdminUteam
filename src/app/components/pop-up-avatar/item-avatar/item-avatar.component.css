@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100px;
+}
+
+
+.checkbox-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.image-container {
+    text-align: center;
+}
+
+img {
+    max-width: 92px;
+    height: auto;
+    border-radius: 50%;
+}
+
+
+
+.approval {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    accent-color: #E2E2E2;
+}
+
+.custom-checkbox {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.approval label {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 117%;
+    color: var(--font-color);
+}

@@ -1,0 +1,41 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.enterBtn{
+    width: 90%;
+    border-radius: 30px;
+    padding: 16px;
+    background: #84dd2c;
+    border: none;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.enterBtn:hover{
+    background: #806bff;
+}
+
+.menubar {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.viewData{
+    width: 80%;
+    margin-top: 3rem;
+}
+
+@media (max-width: 789px) {
+    .viewData{
+        width: 95%;
+    }
+}

@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="firstLine">
+        <p class="title">{{ itemValue.title }}</p>
+        <p class="time">{{ itemValue.time }}</p>
+    </div>
+    <div class="secondLine" *ngIf="!isCollapsed" [@slideInOut]>
+        <p class="content">{{ itemValue.content }}</p>
+    </div>
+    <div (click)="toggleClick()" class="toggleBtn">
+        <p>{{ isCollapsed ? 'Подробнее' : 'Свернуть' }}</p>
+        <span>
+            <svg *ngIf="isCollapsed" width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L10 9L19 1" stroke="#B9AEFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg *ngIf="!isCollapsed" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 16L12 8L3 16" stroke="#B9AEFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+    </div>
+</div>

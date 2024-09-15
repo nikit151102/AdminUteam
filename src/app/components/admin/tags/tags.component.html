@@ -1,0 +1,42 @@
+<h3>{{Title}}</h3>
+<p-button label="Добавить"  (onClick)="addTag()" *ngIf="!visibleForm"/>
+<p-button label="Скрыть"  (onClick)="resetForm()" *ngIf="visibleForm"/>
+<ng-container *ngIf="Service.visibleForm">
+    <div class="createStatus" >            
+        <app-tag-form [Service]="Service" [tagData]="editTag" ></app-tag-form>
+            <!-- <app-excel-reader style="display: flex; flex-direction: row; gap: 0.5rem;" [nameFile]="'sample'"></app-excel-reader> -->
+    </div>
+</ng-container>
+
+
+<p-orderList [value]="Service.products" [listStyle]="{ 'max-height': '30rem' }" filterBy="name" filterPlaceholder="Название">
+    <ng-template let-product pTemplate="item" style="border-bottom: 1px solid red;">
+        <div class="flex flex-wrap p-2 align-items-center gap-3">
+            <div class="horiz">
+                <div class="valueItem">
+                    <p>
+                        {{product.id}}
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.3rem; justify-content: center" >
+                        <p>
+                            {{product.name}}
+                        </p>
+                        <p *ngIf="product.nameEng">
+                            {{product.nameEng}}
+                        </p>
+                        
+                    </div>
+                    
+                </div>
+                <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
+                <p-overlayPanel #op>
+                    <div class="btnsSetting">
+                        <p-button icon="pi pi-pencil" label="Изменить" [rounded]="true" [text]="true" (onClick)="onRowEditInit(product)" />
+                        <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true" severity="danger"
+                            (click)="onRowDelete(product)" />
+                    </div>
+                </p-overlayPanel>
+            </div>
+        </div>
+    </ng-template>
+</p-orderList>

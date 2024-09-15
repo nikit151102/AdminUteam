@@ -1,0 +1,35 @@
+<div class="card" (click)="viewCard('vacancies', 'vacancy')">
+    <p class="designation">
+        {{ cardItem?.title }} 
+    </p>
+    <div>
+        <p class="title">
+            Ищу:
+        </p>
+        <div class="lookingFor">
+            <p class="value" style="font-weight: 500;  font-size: 0.8rem;">
+                {{ cardItem?.profession?.name | uppercase }}
+            </p>
+            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="level" *ngIf="cardItem?.profession?.competenceLevel">
+                {{ getSkills(cardItem?.profession?.competenceLevel) }}
+              </p>
+        </div>
+        <div class="lookingCard">
+            <p class="chapterCard-value-eng" >
+                {{ cardItem?.profession?.nameEng | uppercase }}
+            </p>
+        </div>
+    </div>
+    <div class="container-date">
+
+        <div class="rightProfileChapter">
+            <p class="dateTitle">
+                размещено
+            </p>
+            <p class="dateValue">
+                {{ cardItem?.creationDate | date: 'dd.MM.yyyy' }} 
+            </p>
+        </div>
+
+    </div>
+</div>

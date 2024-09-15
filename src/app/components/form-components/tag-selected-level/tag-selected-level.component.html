@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="selectedTags-block">
+    <div class="tagItem" *ngFor="let tag of selectedTags">
+      <div class="tag">
+        <div>{{ tag.name }}</div>
+        <ng-container *ngIf="tag.competenceLevel !== 0">
+          <ng-container *ngIf="tag.competenceLevel">
+            <div class="levelTag" [ngStyle]="{ 'background': getSkillsColor(tag.competenceLevel) }">
+              {{ getCompetenceLevel(tag.competenceLevel) }}
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <a (click)="deleteTag(tag)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="tag-selector">
+    <ng-container *ngIf="selectedTags.length < maxTags">
+      <input type="text" (focus)="toggleTagBlock(true)" class="tag-input" [placeholder]="placeholderValue"
+        [(ngModel)]="searchQuery" (ngModelChange)="filterTags()">
+    </ng-container>
+    <ng-container *ngIf="showTagBlock">
+      <div *ngIf="filteredTags.length > 0; else noTags" class="tag-block" (click)="onClickInside($event)">
+        <div *ngFor="let tag of filteredTags" (click)="selectTag(tag)" class="selectTag">
+          <ng-container *ngIf="languagesEng">
+            {{ tag.nameEng }}
+          </ng-container>
+          <ng-container *ngIf="!languagesEng">
+            {{ tag.name }}
+          </ng-container>
+
+          <div *ngIf="selectedTag && selectedTag.name === tag.name" class="level">
+            <div (click)="selectLevel(1, tag.id, '#50b229', tag.type, tag.nameEng)" style="background: #50b229;">
+              <p>Junior</p>
+            </div>
+            <div (click)="selectLevel(2, tag.id, '#fad305', tag.type, tag.nameEng)" style="background: #fad305;">
+              <p>Middle</p>
+            </div>
+            <div (click)="selectLevel(3, tag.id, '#ee5354', tag.type, tag.nameEng)" style="background: #ee5354;">
+              <p>Senior</p>
+            </div>
+            <div (click)="selectLevel(0, tag.id,'', tag.type, tag.nameEng)" style="background: #bdbdbd;">
+              <p>Не указывать</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noTags>
+        <div class="tag-block">
+          <p class="no-tags-message">
+            Нет тегов, соответствующих вашему запросу
+          </p>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

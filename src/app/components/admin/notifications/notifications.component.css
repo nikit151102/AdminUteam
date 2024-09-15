@@ -1,0 +1,126 @@
+.conteiner {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 1rem;
+    font-family: var(--font-Monts);
+}
+
+
+
+
+
+
+.createStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.btnsSetting {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.horiz {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.valueItem {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+@media (max-width: 798.98px) {
+    .conteiner {
+        flex-direction: column;
+    }
+
+    :host ::ng-deep .p-button .p-button-label{
+        font-size: 0.7rem !important;
+    }
+    :host ::ng-deep .p-button.p-button-text{
+        font-size: 0.7rem !important;
+    }
+}
+
+@media (max-width: 491.98px) {
+
+    span {
+        width: 100%;
+    }
+
+}
+
+
+.excel {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+/* История уведомлений */
+
+p {
+    margin: 0;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-left: 2rem;
+}
+
+.dayOfWeek {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #000000;
+}
+
+.dayofmonth {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #616060;
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.notificationItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+
+    .notificationItem {
+        gap: 0;
+    }
+}

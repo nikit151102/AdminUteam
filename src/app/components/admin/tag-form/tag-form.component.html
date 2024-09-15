@@ -1,0 +1,28 @@
+<form [formGroup]="tagForm" (ngSubmit)="onSubmit()" >
+  <div class="p-field">
+    <label for="name">Название</label>
+    <input pInputText id="name" formControlName="name" style="width: 100%;"/>
+  </div>
+
+  <div class="p-field">
+    <label for="nameEng">Название (English)</label>
+    <input pInputText id="nameEng" formControlName="nameEng" style="width: 100%;"/>
+  </div>
+
+  <!-- <div class="p-field">
+    <label for="competenceLevel">Competence Level</label>
+    <input pInputText id="competenceLevel" formControlName="competenceLevel" type="number" style="width: 100%;"/>
+  </div> -->
+<!-- 
+  <div class="p-field">
+    <label for="type">Type</label>
+    <input pInputText id="type" formControlName="type" style="width: 100%;"/>
+  </div>
+
+  <div class="p-field">
+    <label for="color">Color</label>
+    <input pInputText id="color" formControlName="color" style="width: 100%;"/>
+  </div> -->
+
+  <p-button icon="pi pi-save" type="submit"></p-button>
+</form>

@@ -1,0 +1,136 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup {
+    background: #fff25f;
+    padding: 20px;
+    border-radius: 8px;
+    width: 42vw;
+    height: 38vh;
+    position: relative;
+    border: 1px solid #fff25f;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    z-index: 1000;
+}
+
+.close-button:hover svg path {
+    stroke: #402abb; 
+    stroke-opacity: 0.6;
+}
+
+.popup-login-title {
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    text-transform: uppercase;
+    text-align: center;
+    color: #101010;
+}
+
+.popup-telegram-auth {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 114%;
+    text-align: center;
+    color: #101010;
+}
+
+.popup-login-link {
+    border-radius: 30px;
+    padding: 16px;
+    background: #84dd2c;
+    width: 374px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.popup-login-link:hover{
+    background: #5A4BB8;
+}
+
+@media (max-width: 987px) {
+    .popup-login-link{
+        width: 90%;
+    }
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 768px) {
+    .popup {
+        width: 80vw;
+        height: auto;
+        padding: 15px;
+    }
+
+    .popup-login-title {
+        font-size: 14px;
+    }
+
+    .popup-telegram-auth {
+        font-size: 12px;
+    }
+
+    .popup-login-link {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Адаптивность для очень маленьких экранов, например, смартфонов */
+@media (max-width: 480px) {
+    .popup {
+        width: 90vw;
+        height: auto;
+        padding: 10px;
+    }
+
+    .popup-login-title {
+        font-size: 12px;
+    }
+
+    .popup-telegram-auth {
+        font-size: 10px;
+    }
+
+    .popup-login-link {
+        padding: 10px;
+        font-size: 0.7rem;
+    }
+}

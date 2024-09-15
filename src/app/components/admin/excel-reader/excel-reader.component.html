@@ -1,0 +1,18 @@
+
+<p-button (click)="downloadFile()"  [text]="true" > Образец</p-button>
+
+<div style="display: flex; gap: 1rem;">
+    <p-fileUpload 
+    #fileUpload 
+    mode="basic" 
+    chooseLabel="Выбрать файл" 
+    chooseIcon="pi pi-upload"
+    name="demo[]" 
+    accept=".xlsx, .xls" 
+    maxFileSize="1000000" 
+    (onSelect)="onFileChange($event)" 
+  ></p-fileUpload>
+
+  <p-button *ngIf="fileUploaded" icon="pi pi-save" (click)="sendData(fileUpload)" [text]="true"></p-button>
+  
+</div>

@@ -1,0 +1,208 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup {
+    background: #fff25f;
+    padding: 80px;
+    border-radius: 8px;
+    width: 725px;
+    height: auto;
+    position: relative;
+    border: 1px solid #fff25f;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    z-index: 1000;
+
+    
+}
+
+.close-button:hover svg path {
+    stroke: #402abb;
+    stroke-opacity: 0.6;
+}
+
+p {
+    margin: 0;
+}
+
+.popup-title {
+    display: flex;
+    width: 100%;
+    margin-bottom: 44px;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    text-transform: uppercase;
+    color: #101010;
+}
+
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 44px;
+}
+
+.popup-btn-setAvatar {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 16px;
+    background: #84dd2c;
+    color: #fff;
+}
+
+.popup-btn-setAvatar:hover {
+    background: #5A4BB8;
+}
+
+.avatar-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.avatar-container::-webkit-scrollbar {
+    width: 0;
+    background: transparent; 
+}
+
+.avatar-container::-webkit-scrollbar-thumb {
+    background: transparent; 
+}
+
+.avatar-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+app-item-avatar {
+    flex: 1 1 calc(25% - 10px);
+    max-width: calc(25% - 10px);
+    box-sizing: border-box;
+}
+
+
+@media (max-width: 987px) {
+    app-item-avatar {
+        flex: 1 1 calc(33.33% - 10px);
+    }
+}
+
+@media (max-width: 568px) {
+    app-item-avatar {
+        display: flex;
+        justify-content: center;
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+}
+
+
+
+
+
+
+/* Адаптивность для планшетов */
+@media (max-width: 987px) {
+    .popup {
+        padding: 40px;
+    }
+
+    .popup-title {
+        font-size: 0.875rem;
+        margin-bottom: 24px;
+    }
+
+    .popup-subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 24px;
+    }
+}
+
+/* Адаптивность для смартфонов */
+@media (max-width: 768px) {
+    .popup {
+        width: 80vw;
+        height: 80vh;
+        padding: 20px;
+    }
+
+    .popup-title {
+        font-size: 0.875rem;
+    }
+
+    .popup-subtitle {
+        font-size: 0.75rem;
+        line-height: 1.25rem;
+    }
+
+    .btns {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .popup-cancel,
+    .popup-btn-delete {
+        font-size: 0.75rem;
+        padding: 12px;
+        width: 100%;
+    }
+}
+
+/* Адаптивность для очень маленьких экранов, например, смартфонов */
+@media (max-width: 480px) {
+    .popup {
+        width: 90vw;
+        padding: 15px;
+    }
+
+    .popup-title {
+        font-size: 0.75rem;
+    }
+
+    .popup-subtitle {
+        font-size: 0.7rem;
+        line-height: 1.25rem;
+    }
+
+    .popup-cancel,
+    .popup-btn-delete {
+        font-size: 0.7rem;
+        padding: 10px;
+    }
+}

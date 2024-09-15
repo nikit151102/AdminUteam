@@ -1,0 +1,37 @@
+<div class="main">
+    <div class="text-background">
+        {{content.numError}}
+      </div>
+    <div class="container" [ngStyle]="{'background': content.Bgimg}">
+        <div class="img">
+            <img src="assets/error/ups.png" alt="Image">
+            <div class="text-img">Упс...</div>
+          </div>
+        <div class="content" >
+            <div class="text">
+                <p class="title">
+                    {{ content.title }}
+                </p>
+                
+                <p class="subtitle">
+                    {{ content.subtitle }}
+                </p>
+            </div>
+            <div class="btn">
+                <ng-container [ngSwitch]="content.btn">
+                    <a *ngSwitchCase="'главная'" class="link" href="">На главную</a>
+                    <a *ngSwitchCase="'ок'" class="link" href="">Ок</a>
+                    <a *ngSwitchDefault class="link" routerLink="/support">Написать в тех. поддержку</a>
+                  </ng-container>
+
+                  
+            </div>
+            <!-- <div>
+                <img src="https://static.tildacdn.com/tild3066-6661-4562-b630-663131656437/UnhealthyLimpEyelash.gif"  style="width: 100px; height: auto;">
+            </div> -->
+            </div>
+   
+    </div>
+    
+</div>
+

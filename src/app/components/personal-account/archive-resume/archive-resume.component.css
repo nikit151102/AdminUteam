@@ -1,0 +1,178 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.3rem;
+    padding: 12px;
+    width: 100%;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: var(--card-archive);
+    break-inside: avoid;
+}
+
+
+.card:hover {
+    background: #A6EB20;
+    color: #010101; 
+}
+
+.card:hover .title,
+.card:hover .chapterCard-value-eng,
+.card:hover .lookingCard_level,
+.card:hover .chapterCard-title,
+.card:hover .chapterCard_title,
+.card:hover .chapterCard_value,
+.card:hover .tagText,
+/* .card:hover .motivation, */
+.card:hover .dateVacancy,
+.card:hover .dateTitle,
+.card:hover .dateValue,
+.card:hover .level,
+.card:hover .lookingCard-level,
+.card:hover .menu_btn a {
+    color: #010101; 
+}
+
+
+.title {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 114%;
+    color: var(--font-color);
+}
+
+
+.lookingCard {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.lookingCard-level {
+    margin: 0;
+    border: 2px solid #fad305;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--font-color);
+}
+
+.chapterCard-title {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.chapterCard-value {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-color);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.tag {
+    border: 1px solid #806bff;
+    border-radius: 10px;
+    padding: 4px 8px 4px 8px;
+    background: rgba(243, 243, 243, 0.1);
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+.motivations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.motivation {
+    border-radius: 50px;
+    padding: 8px 10px;
+
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: var(--font-color);
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+
+.rightProfileChapter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+.dateVacancy {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    line-height: 120%;
+    color: var(--font-color);
+}
+
+.dateTitle {
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+.dateValue {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    margin: 0;
+    margin-left: 5px;
+}
+
+.menu_btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.menu_btn a{
+    flex: 1;
+    background: #e2e2e2;
+    border-radius: 300px;
+    padding: 0.7rem 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #101010;
+}
+
+.menu_btn a:hover {
+    background: #B9AEFF;
+}

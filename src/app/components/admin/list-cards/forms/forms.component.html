@@ -1,0 +1,106 @@
+<div class="popup-overlay"  (click)="closePopUp()" >
+    <div class="popup" (click)="$event.stopPropagation()">
+        <div class="container" style="width: 100%;">
+            <form [formGroup]="form" (ngSubmit)="submit()">
+
+                <div class="content">
+                    <ng-container *ngIf="formSettingService.isheading">
+                        <div class="firstRow">
+                            <div class="stage">
+                                <p class="stage-title">Заголовок:</p>
+                                <textarea formControlName="title" placeholder="Напишите заголовок"
+                                    (input)="adjustHeight($event)"></textarea>
+                                <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched && form.get('title')?.value"
+                                    class="error-message">
+                                    Заголовок обязателен
+                                </div>
+                                <div *ngIf="form.get('title')?.errors?.['maxlength']" class="error-message">
+                                    Заголовок не должно превышать 100 символов
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div class="secondRow">
+                        <div class="stage">
+                            <p class="stage-title">Специализация:</p>
+                            <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions"
+                                [maxTags]="1" [type]="'profession'"
+                                (tagsChanged)="onTagsChanged($event, 'profession')"></app-tag-selected-level>
+                            <div *ngIf="form.get('profession')?.invalid && form.get('profession')?.touched"
+                                class="error-message">
+                                Необходимо выбрать специализацию
+                            </div>
+                        </div>
+
+                        <div class="stage">
+                            <p class="stage-title">Навыки:</p>
+                            <app-tag-selected-level [placeholderValue]="'Выберете навыки'" [tags]="skills"
+                                formControlName="skills"
+                                (tagsChanged)="onTagsChanged($event, 'skills' )"></app-tag-selected-level>
+                            <div *ngIf="form.get('skills')?.invalid && form.get('skills')?.touched"
+                                class="error-message">
+                                Необходимо выбрать от 1 до 3 навыков
+                            </div>
+                        </div>
+
+                        <div class="stage" class="three-stages" style="flex: 1;">
+                            <div class="three-stage">
+                                <p class="stage-title">Мотивация:</p>
+                                <app-motivations (tagsChanged)="onMotivationsChanged($event)"
+                                    formControlName="motivations"></app-motivations>
+                                <div *ngIf="form.get('motivations')?.invalid && form.get('motivations')?.touched"
+                                    class="error-message">
+                                    Необходимо выбрать один или несколько вариантов
+                                </div>
+                            </div>
+                            <ng-container *ngIf="formSettingService.isheading">
+                                <div class="paul">
+                                    <p class="stage-title">Пол:</p>
+                                    <div class="paul-stage">
+                                        <div style="display: flex; gap: 1rem; align-items: center;">
+                                            <p-radioButton formControlName="gender" value="Male" inputId="paul1"
+                                                class="paulValue"></p-radioButton>
+                                            <label for="paul1" class="ml-2" style="font-size: 0.8rem;">Мужской</label>
+                                        </div>
+
+                                        <div style="display: flex; gap: 1rem; align-items: center;">
+                                            <p-radioButton formControlName="gender" value="Female" inputId="paul2"
+                                                class="paulValue"></p-radioButton>
+                                            <label for="paul2" class="ml-2" style="font-size: 0.8rem;">Женский</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="thirdRow">
+                        <div class="stage" style="flex: 2;">
+                            <p class="stage-title">Описание:</p>
+                            <textarea formControlName="details" placeholder="Поле ввода"></textarea>
+                            <div *ngIf="form.get('details')?.invalid && form.get('details')?.touched">
+                                <div *ngIf="form.get('details')?.errors?.['required']" class="error-message">
+                                    Необходимо заполнить поле
+                                </div>
+                                <div *ngIf="form.get('details')?.errors?.['maxlength']" class="error-message">
+                                    Описание не должно превышать 700 символов
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stage container-btns">
+                            <a class="createBtn" (click)="submit()" style="color: #ffffff;">Опубликовать</a>
+                            <div class="secondBtns">
+                                <ng-container *ngIf="formSettingService.isEdit">
+                                    <a class="deleteBtn" style="color: #000000;">В архив</a>
+                                </ng-container>
+                                <a class="deleteBtn" style="color: #000000;">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

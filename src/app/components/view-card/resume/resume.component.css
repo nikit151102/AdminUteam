@@ -1,0 +1,193 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 1.3rem;
+    padding: 12px;
+    width: 100%;
+    break-inside: avoid;
+}
+
+.title {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 114%;
+    color: var(--font-color);
+    margin-bottom: 0;
+}
+
+
+
+.chapterCard-title {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+    margin-top: 0;
+}
+
+.chapterCard-value {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+    margin-bottom: 0;
+}
+
+.lookingCard {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.lookingCard-level {
+    margin: 0;
+    border: 2px solid #fad305;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--font-color);
+}
+
+.chapterCard-value-eng {
+    margin: 0;
+    width: 90%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.7rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-profession-eng);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.tag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #806bff;
+    border-radius: 10px;
+    padding: 4px 8px 4px 8px;
+    background: rgba(243, 243, 243, 0.1);
+}
+
+.tagText {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: var(--font-color);
+    margin: 0;
+}
+
+.tag-level {
+    margin: 0;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+.motivations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.motivation {
+    border-radius: 50px;
+    padding: 8px 10px;
+
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+
+.dateVacancy {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    line-height: 120%;
+    color: var(--font-color);
+}
+
+.dateTitle {
+    margin: 0;
+    margin-top: 5px;
+    font-weight: 400;
+    font-size: 0.75rem;
+}
+
+.dateValue {
+    white-space: nowrap;
+    margin: 0;
+    margin-top: 5px;
+    font-weight: 400;
+    font-size: 0.75rem;
+}
+
+
+.description {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.profile {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.rightProfileChapter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+.description {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.level {
+    margin: 0;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+@media (max-width: 798px) {
+    .level {
+        font-size: 0.7rem;
+    }
+}

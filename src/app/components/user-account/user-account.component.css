@@ -1,0 +1,359 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 100px;
+    box-sizing: border-box;
+    gap: 2rem;
+}
+
+.first-part {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.information,
+.contacts {
+    flex: 1;
+}
+
+.titleLogin {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-color);
+}
+
+.btnLogin {
+    display: flex;
+    border-radius: 300px;
+    padding: 1rem 1.2rem;
+    margin-top: 2rem;
+    width: 100%;
+    background: #e2e2e2;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 120%;
+    color: #101010;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.title {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 140%;
+    color: var(--font-color);
+}
+
+.ProfileChapter {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem 2rem 0px 25px;
+}
+
+.skeleton-tag {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.information-user {
+    margin-top: 1rem;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 117%;
+    color: var(--font-color);
+    margin-left: 25px;
+}
+
+.personal-details {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 25px;
+    color: var(--font-color);
+}
+
+p {
+    margin: 0;
+
+}
+
+.location,
+.age {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 117%;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 25px;
+}
+
+.date_registration {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+    gap: 0.5rem;
+    margin-right: 25px;
+}
+
+.ProfileChapter {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+    padding: 1rem 2rem 0px 2rem;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.logoImg {
+    width: 6vw;
+    border-radius: 50%
+}
+.logo {
+    width: 100px;
+}
+
+.fullName {
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.chapterCard-title {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.contacts-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 20px;
+    padding: 6px 12px 6px 8px;
+    background: #e2e2e2;
+}
+
+.contacts-item:hover {
+    background: #B9AEFF;
+}
+
+
+.contacts-item img {
+    object-fit: contain;
+}
+
+.contacts-item p {
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 120%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #101010;
+}
+
+
+
+
+
+/* резюме и вакансии */
+
+.second-path {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.container-resume,
+.container-vacancy {
+    flex: 1;
+    border-radius: 1.5rem;
+    background: #806bff;
+}
+
+.title-cards {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: #fff;
+    padding: 2rem 2.2rem;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}
+
+.logoImg {
+    width: 6vw;
+}
+
+.phoneDate{
+    display: none;
+}
+
+@media (max-width : 865px) {
+
+    .first-part,
+    .second-path {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 789.98px) {
+
+    .title-cards{
+        font-size: 0.7rem;
+        padding: 0.8rem 1rem;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .phoneDate{
+        display: flex;
+        margin-left: 10px;
+    }
+    .desktopDate{
+        display: none !important;
+    }
+    .container {
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    .information-user {
+        font-size: 0.7rem;
+        margin-left: 10px;
+    }
+
+    .first-part {
+        width: 95%;
+        margin: 0 auto;
+        padding: 1rem 0;
+    }
+
+    .fullName {
+        font-weight: 400;
+        font-size: 1rem;
+    }
+    .ProfileChapter {
+        padding: 0 1rem 0px 0.5rem;
+    }
+
+    .personal-details {
+        margin-left: 10px;
+    }
+
+    .logoImg {
+        width: 100%;
+    }
+
+    .contacts {
+        padding-top: 0 !important;
+        margin-left: 10px;
+    }
+
+    .date_registration {
+        margin-top: 1rem;
+    }
+
+    .date_registration span {
+        font-size: 0.7rem;
+    }
+
+    .information-user,
+    .location-value {
+        font-size: 0.9rem;
+    }
+
+    .chapterCard-title {
+        font-size: 0.7rem;
+    }
+    .container-resume, .container-vacancy{
+        padding-bottom: 1.5rem;
+    }
+
+    .cards {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        padding-bottom: 0.3rem;
+        width: 95%;
+        margin: 0 auto; 
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .title {
+        font-size: 0.7rem;
+    }
+
+    .information-user,
+    .location-value {
+        font-size: 0.9rem;
+    }
+
+    .ProfileChapter {
+        padding: 0.5rem 0.5rem 0px 0.5rem;
+    }
+
+    .fullName {
+        font-size: 1rem;
+    }
+
+    .information-user {
+        margin-left: 10px;
+    }
+
+    .personal-details {
+        margin-left: 10px;
+    }
+}

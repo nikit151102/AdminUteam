@@ -1,0 +1,8 @@
+<div class="container" (click)="onAvatarClick($event, avatarSrc)">
+  <div class="checkbox-container">
+    <input type="checkbox" [checked]="isSelected" class="custom-checkbox" />
+  </div>
+  <div class="image-container">
+    <img [src]="'assets/avatars/'+ avatarSrc + '.png'" alt="avatar">
+  </div>
+</div>

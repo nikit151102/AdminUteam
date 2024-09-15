@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="notificationItem">
+        <div *ngFor="let day of notifications" class="notifications">
+            <div class="title">
+                <p class="dayOfWeek">{{ day.dayOfWeek }}, </p> 
+                <p class="dayofmonth">{{ day.day }} {{ day.month }}</p>
+            </div>
+           
+            <div *ngFor="let notification of day.notifications" >
+              <app-notification-item [itemValue]="notification"></app-notification-item>
+            </div>
+          </div>
+          
+    </div>
+</div>

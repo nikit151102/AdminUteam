@@ -1,0 +1,123 @@
+.card {
+    border-radius: 20px;
+    padding: 0.8rem;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: var(--background-card-account);
+}
+
+.card:hover {
+    background: #A6EB20;
+    color: #010101; 
+}
+
+.card:hover .title,
+.card:hover .chapterCard-value-eng,
+.card:hover .lookingCard_level,
+.card:hover .chapterCard-title,
+.card:hover .chapterCard_title,
+.card:hover .chapterCard_value,
+.card:hover .tagText,
+/* .card:hover .motivation, */
+.card:hover .dateVacancy,
+.card:hover .dateTitle,
+.card:hover .dateValue,
+.card:hover .level,
+.card:hover .value,
+.card:hover .designation,
+.card:hover .menu_btn a {
+    color: #010101; 
+}
+
+p {
+    margin: 0;
+}
+
+.Specialization {
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.title {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+    margin-bottom: 0.3rem;
+}
+
+.chapterCard-value-eng {
+    margin: 0;
+    width: 90%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.7rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-profession-eng);
+}
+
+.value-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center
+}
+
+.value {
+    width: 90%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 114%;
+    text-transform: uppercase;
+    color: var(--font-color);
+}
+
+.level {
+    margin: 0;
+    border: 2px solid #fad305;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--font-color);
+}
+
+
+.container-date {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 1rem;
+}
+
+.rightProfileChapter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.rightProfileChapter p {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: var(--font-color);
+}
+
+.dateTitle {
+    font-size: 0.8rem;
+}
+
+.dateValue {
+    font-size: 1rem;
+}
+
+@media (max-width: 798px) {
+    .level {
+        font-size: 0.7rem;
+    }
+}

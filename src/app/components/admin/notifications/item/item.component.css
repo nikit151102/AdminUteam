@@ -1,0 +1,59 @@
+.card {
+    border-radius: 12px;
+    background: #fff;
+    padding: 0.8rem;
+}
+
+p {
+    margin: 0;
+}
+
+.firstLine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.firstLine .title {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: #101010;
+}
+
+.firstLine .time {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: #101010;
+}
+
+.secondLine .content {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: #101010;
+}
+
+.toggleBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.toggleBtn p {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 0.6rem;
+    line-height: 125%;
+    color: #b9aeff;
+}
+
+
