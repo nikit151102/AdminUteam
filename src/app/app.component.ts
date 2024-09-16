@@ -1,13 +1,32 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { SettingHeaderService } from './components/setting-header.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('fadeAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class AppComponent {
-  title = 'AdminUteam';
+  title = 'uteam';
+  isVisibleFilter: boolean = false;
+  constructor(public settingHeaderService: SettingHeaderService){
+
+  }
+  ngOnInit() {
+    this.settingHeaderService.isFilterState$.subscribe(value => {
+      this.isVisibleFilter = value;
+    });
+  }
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { VacancyService } from '../../personal-account/services/vacancy.service';
+import { VacancyService } from '../../services/vacancy.service';
 import { ViewCardService } from '../../view-card/view-card.service';
 
 @Component({

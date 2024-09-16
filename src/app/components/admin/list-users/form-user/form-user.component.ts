@@ -8,10 +8,10 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
-import { PersonalDataService } from '../../../personal-account/personal-data/personal-data.service';
 import { Router } from '@angular/router';
 import { ListUsersService } from '../list-users.service';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { PersonalDataService } from '../../../services/personal-data.service';
 
 export interface District {
   id: number;

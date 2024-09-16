@@ -8,7 +8,6 @@ import { DomainService } from '../domain.service';
 import { UserAccountService } from './user-account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SkeletonModule } from 'primeng/skeleton';
-import { HomeService } from '../home/home.service';
 import { TokenService } from '../token.service';
 import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
 
@@ -25,7 +24,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService, public viewCardService: ViewCardService,
     private domainService: DomainService, private userAccountService: UserAccountService,
     private cdRef: ChangeDetectorRef,
-    private router: Router, private homeService: HomeService, private popUpEntryService: PopUpEntryService,
+    private router: Router, private popUpEntryService: PopUpEntryService,
     public tokenService: TokenService) {
     this.settingHeaderService.shared = true;
   }
@@ -53,25 +52,16 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   async loadData(id: string): Promise<void> {
     try {
       const userData = await this.userAccountService.getUserData(id).toPromise();
-      setTimeout(() => {
+
         this.userData = userData;
-        console.log("userData", userData)
-      }, 1000);
-
-
-      console.log("userData", this.userData)
+  
       if (userData.freeLink) {
-        this.domainName = this.domainService.setDomain(userData.freeLink);
-        this.imagePath = await this.domainService.checkImageExists(this.domainName);
+        this.domainName = this.domainService.setDomainWithZone(userData.freeLink);
       }
-      this.vacancies = await this.userAccountService.getVacanciesData(id).toPromise();
-      this.resumes = await this.userAccountService.getResumessData(id).toPromise();
+      this.vacancies = await this.userAccountService.getVacanciesData(this.userData.id).toPromise();
+      this.resumes = await this.userAccountService.getResumessData(this.userData.id).toPromise();
     } catch (error: any) {
-      if (error.status) {
-        this.router.navigate(['/error', { num: error.status }]);
-      } else {
-        this.router.navigate(['/error', { num: 500 }]);
-      }
+
     }
   }
 

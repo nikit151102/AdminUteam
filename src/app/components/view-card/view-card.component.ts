@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ResumeComponent } from './resume/resume.component';
 import { VacancyComponent } from './vacancy/vacancy.component';
-import { ResumeService } from '../personal-account/services/resume.service';
+import { ResumeService } from '../services/resume.service';
 import { PageErrorComponent } from '../page-error/page-error.component';
 import { ErrorViewCardComponent } from './error-view-card/error-view-card.component';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -117,10 +117,10 @@ export class ViewCardComponent implements OnInit {
     this.popUpEntryService.showDialog();
   }
 
-  setArchive(event: Event) {
+  setBanned(event: Event) {
     event.stopPropagation();
-    this.resumeService.toggleResumeArchive(this.dataCard);
-    this.router.navigate([`/myaccount`, this.dataCard.user.id]);
+    this.resumeService.toggleResumeBanned(this.dataCard);
+    this.router.navigate([`/`]);
   }
 
   update(event: Event, id: number) {

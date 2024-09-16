@@ -35,7 +35,7 @@
             <td>{{ user.nickname}}</td>
             <td>{{ user.telegram }}</td>
             <td>{{ user.dateOfRegistration | date: 'dd/MM/yyyy' }}</td>
-            <td><a [href]="viewUser(user.id)" target="_blank">Перейти</a></td>
+            <td><a [href]="viewUser(user.nickname)" target="_blank">Перейти</a></td>
         </tr>
     </ng-template>
     <ng-template pTemplate="paginator">

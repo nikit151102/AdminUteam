@@ -13,11 +13,11 @@
             <div class="ProfileChapter">
                 <div class="logo">
                     <ng-container *ngIf="dataCard?.user?.imageLink">
-                        <img [src]="'assets/avatars/'+ dataCard?.user?.imageLink + '.png'" alt="avatar"
+                        <img [src]="'avatars/'+ dataCard?.user?.imageLink + '.png'" alt="avatar"
                             style="width:92px; height:92px" class="logoImg">
                     </ng-container>
                     <ng-container *ngIf="!dataCard?.user?.imageLink">
-                        <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:92px; height:92px"
+                        <img [src]="'avatars/default.png'" alt="avatar" style="width:92px; height:92px"
                             class="logoImg">
                     </ng-container>
                 </div>
@@ -94,40 +94,14 @@
                 </div>
 
             </ng-container>
-
-
-            <ng-container *ngIf="!tokenService.getToken() && dataCard">
-                <div>
-                    <p class="titleLogin" style="margin-bottom: 0;">
-                        Контакты доступны только авторизированным пользователям.
-                    </p>
-                    <a (click)="enter()" class="btnLogin">
-                        Войти
-                    </a>
-                </div>
-
-            </ng-container>
-
         </div>
 
         <div>
 
-            <a [href]="viewUser()" class="btnAccount_user" target="_blank"
-                *ngIf="!currentUser || currentUser.id !== dataCard.user.id && dataCard">
-                В аккаунт пользователя
-                <p style="margin: 0">
-                    <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M38.495 6.49497C38.7683 6.22161 38.7683 5.77839 38.495 5.50503L34.0402 1.05025C33.7668 0.776886 33.3236 0.776886 33.0503 1.05025C32.7769 1.32362 32.7769 1.76684 33.0503 2.0402L37.0101 6L33.0503 9.9598C32.7769 10.2332 32.7769 10.6764 33.0503 10.9497C33.3236 11.2231 33.7668 11.2231 34.0402 10.9497L38.495 6.49497ZM0 6.7H38V5.3H0L0 6.7Z"
-                            fill="white" />
-                    </svg>
-                </p>
-            </a>
-            <ng-container *ngIf="tokenService.getToken()">
                 <ng-container *ngIf="currentUser && currentUser.id === dataCard.user.id">
                     <div class="menu_btn">
-                        <a (click)="setArchive($event)">
-                            В архив
+                        <a (click)="setBanned($event)">
+                            В бан
                         </a>
                         <a (click)="update($event, dataCard?.id)">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
@@ -142,8 +116,6 @@
                     </div>
                 </ng-container>
 
-
-            </ng-container>
 
         </div>
     </div>

@@ -55,7 +55,7 @@ export class ResumeService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.put(`${this.domain}/resumes/ofCurrentUser/${id}`, body, { headers });
+    return this.http.put(`${this.domain}/resumes/${id}`, body, { headers });
   }
 
 
@@ -80,11 +80,12 @@ export class ResumeService {
   }
 
   // Метод для перемещения резюме в архив или обратно
-  toggleResumeArchive(resume: any): void {
+  toggleResumeBanned(resume: any): void {
     // Определяем новое состояние для резюме
-    const newVisibility = resume.visibility === 'CREATOR_ONLY' ? 'EVERYBODY' : 'CREATOR_ONLY';
-    const updatedResume = { ...resume, visibility: newVisibility };
+    const newVisibility = resume.visibility === 'EVERYBODY' ;
+    const updatedResume = { ...resume, visibility: newVisibility , banned: true };
 
+    
     // Обновляем резюме на сервере
     this.setArchive(resume.id, updatedResume).subscribe(
       (response: any) => {

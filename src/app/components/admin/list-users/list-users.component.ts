@@ -39,8 +39,8 @@ export class ListUsersComponent {
     this.listUsersService.visibleForm = true;
   }
 
-  viewUser(id: string):string  {
-    return this.router.createUrlTree([`/user`, id]).toString();
+  viewUser(nick: string):string  {
+    return this.router.createUrlTree([`/user`, nick]).toString();
   }
 
 

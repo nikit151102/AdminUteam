@@ -1,15 +1,9 @@
-<div class="popup-overlay" *ngIf="popUpEntryService.visible" (click)="closePopUp()">
-  <div class="popup" (click)="$event.stopPropagation()">
-    <div class="close-button" (click)="closePopUp()">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 5L18 18M5.0002 18L18 5" stroke="#333334" stroke-opacity="0.3" stroke-width="1.4" stroke-linecap="round"/>
-      </svg>
-    </div>
+
     <ng-content>
       <p class="popup-login-title">Войти в аккаунт</p>
       <p class="popup-telegram-auth">Авторизация через Telegram</p>
       <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="loadTelegramWidget()">Войти</a>
       <div id="telegram-login"></div>
     </ng-content>  
-  </div>
-</div>
+
+
