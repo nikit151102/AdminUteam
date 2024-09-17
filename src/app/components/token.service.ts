@@ -12,7 +12,7 @@ export class TokenService {
   constructor() { }
 
   private hasToken(): boolean {
-    return !!localStorage.getItem('authToken');
+    return !!localStorage.getItem('authAdminToken');
   }
 
   getToken(): boolean {
