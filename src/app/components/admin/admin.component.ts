@@ -16,6 +16,7 @@ import { ResumesService } from './services/resumes.service';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { AdminsListComponent } from './admins-list/admins-list.component';
 import { PopUpEntryComponent } from '../pop-up-entry/pop-up-entry.component';
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -50,9 +51,15 @@ export class AdminComponent implements OnInit {
   constructor(public vacanciesService: VacanciesService,
     public resumesService: ResumesService,
     public skillsService: SkillsService,
-     public specialtiesService: SpecialtiesService, private router: Router) { }
+     public specialtiesService: SpecialtiesService, private router: Router,
+    private adminService:AdminService) { }
 
   ngOnInit() {
+
+    this.adminService.authTheme$.subscribe(value =>{
+      this.isAuthenticated = value;
+    })
+    
     this.items = [
       {
         label: 'Главная',

@@ -8,6 +8,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AdminService } from '../admin/admin.service';
 
 @Component({
   selector: 'app-pop-up-entry',
@@ -22,7 +23,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     public popUpEntryService: PopUpEntryService,
     private tokenService: TokenService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private adminService:AdminService
   ) { }
 
  
@@ -85,7 +87,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log("response", response);
       console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
-      this.login_user()
+      this.adminService.changeTheme(true)
+      
     });
   
   }
