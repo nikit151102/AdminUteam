@@ -12,7 +12,7 @@ export class TokenService {
   constructor() { }
 
   private hasToken(): boolean {
-    return !!localStorage.getItem('authAdminToken');
+    return !!localStorage.getItem('YXV0aEFkbWluVG9rZW4='); 
   }
 
   getToken(): boolean {
@@ -20,12 +20,12 @@ export class TokenService {
   }
 
   setToken(token:string): void {
-    localStorage.setItem('authToken', token);
+    localStorage.setItem('YXV0aEFkbWluVG9rZW4=', token); //Base64 Encoding
     this.authTokenSubject.next(true);
   }
 
   clearToken(): void {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('YXV0aEFkbWluVG9rZW4=');
     this.authTokenSubject.next(false);
   }
   

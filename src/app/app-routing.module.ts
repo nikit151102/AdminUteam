@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageErrorComponent } from './components/page-error/page-error.component';
+import { PopUpEntryComponent } from './components/pop-up-entry/pop-up-entry.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
+    component: PopUpEntryComponent
   },
   {
     path: 'news',
@@ -19,7 +20,7 @@ const routes: Routes = [
     path: 'vacancy/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'vacancy' }
   },
   {
-    path: 'user/:id', loadChildren: () => import('./components/user-account/user-account.module').then(m => m.UserAccountModule)
+    path: ':id', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'error', component: PageErrorComponent

@@ -85,44 +85,19 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       headers, responseType: 'text'
     }).subscribe((response: any) => {
       console.log("response", response);
-      console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
-      this.adminService.changeTheme(true)
-
     });
-
-  }
-
-
-  login_enter() {
-    this.popUpEntryService.visible = false;
-
-    this.popUpEntryService.getRoot().subscribe(
-      (data) => {
-        this.tokenService.setToken(data.token);
-        console.log('User data:', data.token);
-        this.popUpEntryService.userVisible = true;
-        this.popUpEntryService.visible = false;
-        this.login_user()
-      },
-      (error) => {
-        console.error('Error fetching user data:', error);
-      }
-    );
 
   }
 
   login_user() {
     this.popUpEntryService.visible = false;
-    const token = this.tokenService.getToken();
-    console.log("tokentokentokentoken", token)
-    // this.popUpEntryService.getUser().subscribe(
-    //   (data) => {
-
-    //   },
-    //   (error) => {
-    //   }
-    // );
+    this.popUpEntryService.getUser().subscribe(
+      (data) => {
+        console.log("data", data);
+        this.router.navigate(['', data.nickname]);
+      }
+    );
 
   }
 

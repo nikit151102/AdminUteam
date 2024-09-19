@@ -1,9 +1,9 @@
-
-    <ng-content>
-      <p class="popup-login-title">Войти в аккаунт</p>
-      <p class="popup-telegram-auth">Авторизация через Telegram</p>
-      <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="loadTelegramWidget()">Войти</a>
-      <div id="telegram-login"></div>
-    </ng-content>  
-
-
+<div class="container">
+  <div class="content">
+    <img src="assets/logo.svg" alt="logo" class="logo">
+    <p class="popup-login-title">Войти в аккаунт</p>
+    <p class="popup-telegram-auth">Авторизация через Telegram</p>
+    <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="loadTelegramWidget()">Войти</a>
+    <div id="telegram-login"></div>
+  </div>
+</div>
