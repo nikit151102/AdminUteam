@@ -2,12 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageErrorComponent } from './components/page-error/page-error.component';
 import { PopUpEntryComponent } from './components/pop-up-entry/pop-up-entry.component';
+import { AuthGuard } from './components/admin/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    // component: PopUpEntryComponent
-    loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
+    component: PopUpEntryComponent
+  
+  },
+  {
+    path: 'admin/:id', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard]
   },
   {
     path: ':id', loadChildren: () => import('./components/user-account/user-account.module').then(m => m.UserAccountModule)
