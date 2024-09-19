@@ -28,43 +28,49 @@ export class HeaderComponent implements OnInit {
         label: 'Главная',
         command: () => {
           this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/home`]);
-      },
+        },
       },
       {
         label: 'Пользователи',
         command: () => {
           this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/users`]);
-      },
+        },
       },
       {
         label: 'Вакансии',
         command: () => {
           this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/vacancies`]);
-      },
+        },
       },
       {
         label: 'Резюме',
         command: () => {
           this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/resumes`]);
-      },
+        },
       },
       {
         label: 'Специальности',
         command: () => {
           this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/specialties`]);
-      },
+        },
       },
       {
         label: 'Навыки',
         command: () => {
           this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/skills`]);
+        },
       },
+      {
+        label: 'Список исключений логинов ',
+        command: () => {
+          this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/reservedNickname`]);
+        },
       },
       {
         label: 'Уведомления',
         command: () => {
           this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/notifications`]);
-      },
+        },
       },
       {
         label: 'Выйти',
@@ -72,8 +78,8 @@ export class HeaderComponent implements OnInit {
         command: () => {
           localStorage.removeItem("YXV0aEFkbWluVG9rZW4=");
           localStorage.removeItem("idAdmin");
-          
-      }
+
+        }
       },
     ]
   }
