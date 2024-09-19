@@ -101,7 +101,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     this.popUpEntryService.getUser().subscribe(
       (data) => {
         console.log("data", data);
-        this.router.navigate(['', data.nickname]);
+        this.router.navigate(['/admin', data.nickname]);
       }
     );
 
