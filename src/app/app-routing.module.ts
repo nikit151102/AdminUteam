@@ -6,7 +6,7 @@ import { PopUpEntryComponent } from './components/pop-up-entry/pop-up-entry.comp
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
+    component: PopUpEntryComponent
   },
   {
     path: 'resume/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'resume' }
