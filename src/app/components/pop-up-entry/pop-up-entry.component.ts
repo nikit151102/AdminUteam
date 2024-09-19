@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { PopUpEntryService } from './pop-up-entry.service';
 import { TokenService } from '../token.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -24,10 +24,10 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     private tokenService: TokenService,
     private http: HttpClient,
     private router: Router,
-    private adminService:AdminService
+    private adminService: AdminService
   ) { }
 
- 
+
 
 
   telegramWidgetLoaded: boolean = false;
@@ -75,22 +75,22 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     (window as any).onTelegramAuth = undefined;
     this.telegramWidgetLoaded = false;
   }
-  
+
   onTelegramAuth(user: any) {
     console.log("Telegram User Data:", user);
 
     user.username = `$${user.username}`;
-    
-    this.http.post('https://uteam.top/api/admins/signin', user, {
-      headers: { 'Content-Type': 'application/json' }
+    const headers = new HttpHeaders({ 'Content-Type': 'text/plain' });
+    this.http.post('https://uteam.top/api/admins/signin', user.username, {
+      headers, responseType: 'text'
     }).subscribe((response: any) => {
       console.log("response", response);
       console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
       this.adminService.changeTheme(true)
-      
+
     });
-  
+
   }
 
 
@@ -115,10 +115,10 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   login_user() {
     this.popUpEntryService.visible = false;
     const token = this.tokenService.getToken();
-    console.log("tokentokentokentoken",token)
+    console.log("tokentokentokentoken", token)
     // this.popUpEntryService.getUser().subscribe(
     //   (data) => {
-       
+
     //   },
     //   (error) => {
     //   }
