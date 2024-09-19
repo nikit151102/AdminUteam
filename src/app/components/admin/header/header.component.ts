@@ -26,41 +26,52 @@ export class HeaderComponent implements OnInit {
     this.items = [
       {
         label: 'Главная',
-        routerLink: ['/home']
+        command: () => {
+          this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/home`]);
+      },
       },
       {
         label: 'Пользователи',
-        routerLink: ['/users']
+        command: () => {
+          this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/users`]);
+      },
       },
       {
         label: 'Вакансии',
-        routerLink: ['/vacancies']
+        command: () => {
+          this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/vacancies`]);
+      },
       },
       {
         label: 'Резюме',
-        routerLink: ['/resumes']
+        command: () => {
+          this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/resumes`]);
+      },
       },
       {
         label: 'Специальности',
-        routerLink: ['/specialties']
+        command: () => {
+          this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/specialties`]);
+      },
       },
       {
         label: 'Навыки',
-        routerLink: ['/skills']
+        command: () => {
+          this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/skills`]);
       },
-      {
-        label: 'Список исключений логинов ',
-        routerLink: ['/reservedNickname']
       },
       {
         label: 'Уведомления',
-        routerLink: ['/notifications']
+        command: () => {
+          this.router.navigate([`/admin/${localStorage.getItem('YXV0aEFkbWluVG9rZW4=')}/notifications`]);
+      },
       },
       {
         label: 'Выйти',
         routerLink: ['/'],
         command: () => {
           localStorage.removeItem("YXV0aEFkbWluVG9rZW4=");
+          localStorage.removeItem("idAdmin");
           
       }
       },

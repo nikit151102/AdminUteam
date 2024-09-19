@@ -102,6 +102,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       (data) => {
         console.log("data", data);
         this.router.navigate(['/admin', data.nickname]);
+        localStorage.setItem('idAdmin', data.nickname)
+        
       }
     );
 

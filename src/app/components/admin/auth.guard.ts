@@ -19,6 +19,8 @@ export class AuthGuard implements CanActivate {
     
     if (!token) {
       this.router.navigate(['/']); // Перенаправляем на главную страницу, если токена нет
+      localStorage.removeItem('idAdmin')
+
       return of(false); // Возвращаем Observable с false
     }
 
@@ -31,6 +33,7 @@ export class AuthGuard implements CanActivate {
       map(() => true),  // Если данные возвращены успешно, возвращаем true
       catchError(() => {
         this.tokenService.clearToken()
+        localStorage.removeItem('idAdmin')
         this.router.navigate(['/']); // Перенаправляем на главную страницу
         return of(false); // Возвращаем Observable с false
       })

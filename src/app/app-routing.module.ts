@@ -8,7 +8,6 @@ const routes: Routes = [
   {
     path: '',
     component: PopUpEntryComponent
-  
   },
   {
     path: 'admin/:id', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard]
