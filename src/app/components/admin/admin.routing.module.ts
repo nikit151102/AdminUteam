@@ -30,6 +30,9 @@ const routes: Routes = [
       {
         path: 'notifications', loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule)
       },
+      {
+        path: 'reservedNickname', loadChildren: () => import('./reserved-nickname/reserved-nickname.module').then(m => m.ReservedNicknameModule)
+      },
     ]
   },
   

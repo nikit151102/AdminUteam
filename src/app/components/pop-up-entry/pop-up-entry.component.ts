@@ -59,7 +59,6 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
       document.getElementById('telegram-login')?.appendChild(script);
 
-      // Ensure onTelegramAuth is available globally
       (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
       this.telegramWidgetLoaded = true;
     }

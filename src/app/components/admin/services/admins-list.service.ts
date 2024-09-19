@@ -49,4 +49,26 @@ export class AdminsListService {
     );
   }
 
+  
+  addFunction(user:any): Observable<any> {
+
+    const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=');
+     const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<any>(`${this.domain}/admins/signup`, user, { headers });
+  }
+
+  addUser(user: any) {
+    this.addFunction(user).subscribe(
+      (response: any[]) => {
+        this.getdata();
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
 }

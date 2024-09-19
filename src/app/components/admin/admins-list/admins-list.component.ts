@@ -5,11 +5,12 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { AdminsListService } from '../services/admins-list.service';
 import { Router, RouterModule } from '@angular/router';
+import { FormComponent } from './form/form.component';
 
 @Component({
   selector: 'app-admins-list',
   standalone: true,
-  imports: [TableModule, CommonModule, PaginatorModule, ButtonModule, RouterModule],
+  imports: [TableModule, CommonModule, PaginatorModule, ButtonModule, RouterModule, FormComponent],
   templateUrl: './admins-list.component.html',
   styleUrl: './admins-list.component.css'
 })
@@ -46,4 +47,5 @@ export class AdminsListComponent {
     this.router.navigate([``, user.nickname]);
   }
 
+  
 }

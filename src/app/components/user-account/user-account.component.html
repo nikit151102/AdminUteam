@@ -3,10 +3,10 @@
         <div class="information">
             <div class="ProfileChapter">
                 <div class="logo">
-                    <ng-container *ngIf="userData?.imageLink">
+                    <ng-container *ngIf="userData?.imageLink && userData?.imageLink !== 'string'">
                         <img [src]="'assets/avatars/'+ userData?.imageLink + '.png'" class="logoImg">
                     </ng-container>
-                    <ng-container *ngIf="!userData?.imageLink">
+                    <ng-container *ngIf="!userData?.imageLink || userData?.imageLink == 'string'">
                         <img [src]="'assets/avatars/default.png'" alt="logo" class="logoImg">
                     </ng-container>
                 </div>

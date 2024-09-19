@@ -1,0 +1,38 @@
+
+
+<div class="container">
+    <div class="content-search">
+        <p>Добавить</p>
+        <input type="text" [(ngModel)]="newValue" placeholder="Введите новый логин">
+        <p-button icon="pi pi-plus" severity="success" />
+    </div>
+    
+    <div class="content-search">
+        <p>Поиск</p>
+        <input type="text" [(ngModel)]="searchValue" (ngModelChange)="onSearchValueChange($event)"
+            placeholder="Введите логин">
+    </div>
+</div>
+
+<p-orderList [value]="reservedNicknameService.products" [listStyle]="{ 'max-height': '30rem' }">
+    <ng-template let-product let-i="index" pTemplate="item" style="border-bottom: 1px solid red;">
+        <div class="flex flex-wrap p-2 align-items-center gap-3">
+            <div class="horiz">
+                <div class="valueItem">
+                    <p>
+                        {{i + 1}}
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.3rem; justify-content: center">
+                        <p>
+                            {{product}}
+                        </p>
+
+                    </div>
+                </div>
+                
+                <p-button icon="pi pi-times" [rounded]="true" [text]="true" severity="danger"
+                            (click)="onRowDelete(product)" />
+            </div>
+        </div>
+    </ng-template>
+</p-orderList>

@@ -50,13 +50,11 @@ export class TagsComponent {
     this.visibleForm = true;
     this.Service.visibleForm = true;
   }
-resetForm(){
-  this.editTag = null;
-  this.visibleForm = false;
-  this.Service.visibleForm = false;
-}
-
-
+  resetForm() {
+    this.editTag = null;
+    this.visibleForm = false;
+    this.Service.visibleForm = false;
+  }
 
   onRowEditInit(product: tag) {
     this.editTag = product;
@@ -65,11 +63,11 @@ resetForm(){
 
   onRowEditSave(product: tag) {
     if (product.name && product.name != '') {
-   
+
       this.Service.putFunction(product['id'], product['name']).subscribe(
         (response: any) => {
           this.messageService.add({ severity: 'success', summary: 'Подтверждено', detail: 'Статус заявки изменен', life: 2000 });
-      
+
         },
         (error: any) => {
           this.messageService.add({ severity: 'error', summary: 'Ошибка', detail: 'Ошибка при изменении статуса заявки', life: 2000 });
@@ -91,7 +89,7 @@ resetForm(){
         .subscribe(
           (response: any) => {
             this.messageService.add({ severity: 'success', summary: 'Подтверждено', detail: 'Статус заявки добавлен', life: 2000 });
-    
+
             this.newStatus = '';
           },
           (error: any) => {

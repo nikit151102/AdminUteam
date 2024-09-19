@@ -49,6 +49,10 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/skills']
       },
       {
+        label: 'Список исключений логинов ',
+        routerLink: ['/reservedNickname']
+      },
+      {
         label: 'Уведомления',
         routerLink: ['/notifications']
       },

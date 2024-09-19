@@ -1,0 +1,86 @@
+p {
+    margin: 0;
+}
+
+:host ::ng-deep .p-orderlist-controls {
+    display: none !important;
+}
+
+.createStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.btnsSetting {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.horiz {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.valueItem {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.content-search {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 1.5rem;
+    padding: 1rem 1.3rem;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: #b9aeff;
+}
+
+input {
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 100%;
+    outline: none;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 140%;
+}
+
+
+
+@media (max-width: 989.98px) {
+    
+    .content-search{
+        width: 100%;
+       
+    }
+
+    .container{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 491.98px) {
+
+    span {
+        width: 100%;
+    }
+
+}
