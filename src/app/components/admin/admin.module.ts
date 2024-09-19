@@ -8,7 +8,6 @@ import { AdminComponent } from './admin.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    AdminComponent,
     
   ]
 })

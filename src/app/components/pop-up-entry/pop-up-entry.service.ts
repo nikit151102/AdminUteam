@@ -15,7 +15,7 @@ export class PopUpEntryService {
   private domain = 'https://uteam.top/api';
 
   getUser(): Observable<any> {
-    const token = this.tokenService.getToken();
+    const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=')
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
