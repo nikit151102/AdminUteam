@@ -4,7 +4,7 @@
     <div class="content-search">
         <p>Добавить</p>
         <input type="text" [(ngModel)]="newValue" placeholder="Введите новый логин">
-        <p-button icon="pi pi-plus" severity="success" />
+        <p-button icon="pi pi-plus" severity="success" (onClick)="onRowAdd()" />
     </div>
     
     <div class="content-search">

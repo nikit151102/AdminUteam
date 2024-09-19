@@ -15,14 +15,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class ReservedNicknameComponent implements OnInit {
 
-  searchValue:string = '';
-  newValue:string = '';
-  
-  constructor(public reservedNicknameService:ReservedNicknameService){}
-  
+  searchValue: string = '';
+  newValue: string = '';
+
+  constructor(public reservedNicknameService: ReservedNicknameService) { }
+
   ngOnInit(): void {
 
-  } 
+  }
 
   onSearchValueChange(value: string) {
     if (value.length > 0) {
@@ -31,9 +31,18 @@ export class ReservedNicknameComponent implements OnInit {
       this.reservedNicknameService.products = [];
     }
   }
-  
-  onRowDelete(tag: any){
+
+  onRowDelete(tag: any) {
     this.reservedNicknameService.deleteTag(tag)
     this.reservedNicknameService.products = [];
+    this.searchValue = '';
+  }
+
+  onRowAdd() {
+    if(this.newValue){
+      this.reservedNicknameService.addTag(this.newValue)
+      this.reservedNicknameService.products = [];
+      this.newValue = '';
+    }
   }
 }

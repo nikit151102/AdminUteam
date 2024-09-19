@@ -24,16 +24,10 @@ export class ReservedNicknameService {
   }
 
   getTags(searchValue: string) {
-    this.getFunction(searchValue).subscribe({
-      next: (response) => {
+    this.getFunction(searchValue).subscribe((response) => {
         this.products = response;
-        console.log("response", response)
-      },
-      error: (error) => {
-
-        console.error('Error:', error);
       }
-    });
+    );
   }
 
 
@@ -53,8 +47,6 @@ export class ReservedNicknameService {
 
       },
       error: (error) => {
-
-        console.error('Error:', error);
       }
     });
   }
