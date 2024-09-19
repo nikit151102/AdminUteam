@@ -78,18 +78,23 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
   onTelegramAuth(user: any) {
     console.log("Telegram User Data:", user);
-
+  
     user.username = `$${user.username}`;
     const headers = new HttpHeaders({ 'Content-Type': 'text/plain' });
-    this.http.post('https://uteam.top/api/admins/signin', user.username, {
-      headers, responseType: 'text'
+    this.http.post<any>('https://uteam.top/api/admins/signin', user.username, {
+      headers,
+      responseType: 'json'  
     }).subscribe((response: any) => {
       console.log("response", response);
-      this.tokenService.setToken(response.token);
+      if (response && response.token) {
+        this.tokenService.setToken(response.token);
+      } else {
+        console.error('Token not found in response', response);
+      }
+    }, (error) => {
+      console.error('Error occurred:', error);
     });
-
   }
-
   login_user() {
     this.popUpEntryService.visible = false;
     this.popUpEntryService.getUser().subscribe(
