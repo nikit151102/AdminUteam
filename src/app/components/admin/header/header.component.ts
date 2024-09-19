@@ -56,6 +56,14 @@ export class HeaderComponent implements OnInit {
         label: 'Уведомления',
         routerLink: ['/notifications']
       },
+      {
+        label: 'Выйти',
+        routerLink: ['/'],
+        command: () => {
+          localStorage.removeItem("YXV0aEFkbWluVG9rZW4=");
+          
+      }
+      },
     ]
   }
 }
