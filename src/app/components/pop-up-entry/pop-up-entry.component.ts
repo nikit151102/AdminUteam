@@ -88,6 +88,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log("response", response);
       if (response && response.token) {
         this.tokenService.setToken(response.token);
+        this.login_user();
       } else {
         console.error('Token not found in response', response);
       }
@@ -95,6 +96,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       console.error('Error occurred:', error);
     });
   }
+  
   login_user() {
     this.popUpEntryService.visible = false;
     this.popUpEntryService.getUser().subscribe(
