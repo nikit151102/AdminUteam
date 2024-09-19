@@ -45,6 +45,8 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       this.userId = params.get('id')!;
       if (this.userId) {
         this.loadData(this.userId);
+        console.log("this.userId")
+        console.log("this.userId",this.userId)
       }
     });
   }
@@ -54,7 +56,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       const userData = await this.userAccountService.getUserData(id).toPromise();
 
         this.userData = userData;
-  
+  console.log(" this.userData", this.userData)
       if (userData.freeLink) {
         this.domainName = this.domainService.setDomainWithZone(userData.freeLink);
       }

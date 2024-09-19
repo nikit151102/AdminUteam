@@ -4,10 +4,10 @@
             <div class="ProfileChapter">
                 <div class="logo">
                     <ng-container *ngIf="userData?.imageLink">
-                        <img [src]="'avatars/'+ userData?.imageLink + '.png'" class="logoImg">
+                        <img [src]="'assets/avatars/'+ userData?.imageLink + '.png'" class="logoImg">
                     </ng-container>
                     <ng-container *ngIf="!userData?.imageLink">
-                        <img [src]="'avatars/default.png'" alt="logo" class="logoImg">
+                        <img [src]="'assets/avatars/default.png'" alt="logo" class="logoImg">
                     </ng-container>
                 </div>
 

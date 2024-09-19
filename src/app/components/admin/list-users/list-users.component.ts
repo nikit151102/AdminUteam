@@ -40,7 +40,7 @@ export class ListUsersComponent {
   }
 
   viewUser(nick: string):string  {
-    return this.router.createUrlTree([`/user`, nick]).toString();
+    return this.router.createUrlTree([``, nick]).toString();
   }
 
 

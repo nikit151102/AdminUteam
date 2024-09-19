@@ -4,8 +4,35 @@ import { AdminComponent } from './admin.component';
 
 
 const routes: Routes = [
-  { path: '', component: AdminComponent
-  }
+  { path: '', component: AdminComponent,
+    children:[
+      {
+        path: '', redirectTo: 'home', pathMatch: 'full' // Автоматический переход на 'home'
+      },
+      {
+        path: 'home', loadChildren: () => import('./admins-list/admins-list.module').then(m => m.AdminsListModule)
+      },
+      {
+        path: 'users', loadChildren: () => import('./list-users/list-users.module').then(m => m.UsersListModule)
+      },
+      {
+        path: 'vacancies', loadChildren: () => import('./vacancies/vacancies.module').then(m => m.VacanciesModule)
+      },
+      {
+        path: 'resumes', loadChildren: () => import('./resumes/resumes.module').then(m => m.ResumesModule)
+      },
+      {
+        path: 'specialties', loadChildren: () => import('./specialties/specialties.module').then(m => m.SpecialtiesModule)
+      },
+      {
+        path: 'skills', loadChildren: () => import('./skills/skills.module').then(m => m.SkillsModule)
+      },
+      {
+        path: 'notifications', loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule)
+      },
+    ]
+  },
+  
 ];
 
 @NgModule({

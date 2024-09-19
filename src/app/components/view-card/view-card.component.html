@@ -13,11 +13,11 @@
             <div class="ProfileChapter">
                 <div class="logo">
                     <ng-container *ngIf="dataCard?.user?.imageLink">
-                        <img [src]="'avatars/'+ dataCard?.user?.imageLink + '.png'" alt="avatar"
+                        <img [src]="'assets/avatars/'+ dataCard?.user?.imageLink + '.png'" alt="avatar"
                             style="width:92px; height:92px" class="logoImg">
                     </ng-container>
                     <ng-container *ngIf="!dataCard?.user?.imageLink">
-                        <img [src]="'avatars/default.png'" alt="avatar" style="width:92px; height:92px"
+                        <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:92px; height:92px"
                             class="logoImg">
                     </ng-container>
                 </div>

@@ -9,16 +9,16 @@ const routes: Routes = [
     // component: PopUpEntryComponent
     loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
   },
-
+  {
+    path: ':id', loadChildren: () => import('./components/user-account/user-account.module').then(m => m.UserAccountModule)
+  },
   {
     path: 'resume/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'resume' }
   },
   {
     path: 'vacancy/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'vacancy' }
   },
-  {
-    path: ':id', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
-  },
+
   {
     path: 'error', component: PageErrorComponent
   },
