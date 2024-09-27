@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from '../../../../environment';
 
 interface tag {
   id: number;
@@ -23,7 +24,7 @@ export class SpecialtiesService {
   type = "PROFESSION";
   visibleForm:boolean = false;
   constructor(private http: HttpClient) { }
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   getFunction(): Observable<any> {
     return this.http.get<any>(`${this.domain}/tags?types=PROFESSION`,);

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ResumeService {
   constructor(private http: HttpClient) { }
 
   private subscription: Subscription | null = null;
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   resumesList: any[] = [];
   activeResumes: any[] = [];

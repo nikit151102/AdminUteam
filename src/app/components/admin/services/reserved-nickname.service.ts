@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ReservedNicknameService {
 
   constructor(private http: HttpClient) { }
 
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   getFunction(searchValue: string | null = null) {
     const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=');

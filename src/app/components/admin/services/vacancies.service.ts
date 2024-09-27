@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class VacanciesService {
   type = "PROFESSION";
   visibleForm: boolean = false;
   constructor(private http: HttpClient) { }
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   getFunction(): Observable<any> {
     return this.http.post<any>(`${this.domain}/vacancies/getAll?page=0&size=1000`, this.body);

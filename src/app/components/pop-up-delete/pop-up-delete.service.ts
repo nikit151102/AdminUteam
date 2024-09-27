@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class PopUpDeleteService {
   private visibleSubject = new BehaviorSubject<boolean>(false);
   visible$ = this.visibleSubject.asObservable();  // Экспортируем как Observable
 
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   constructor(private http: HttpClient) { }
 

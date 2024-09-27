@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { TokenService } from '../token.service';
+import { environment } from '../../../environment';
 
 export interface Vacancy {
   title: string;
@@ -54,7 +55,7 @@ export class ViewCardService {
 
   typeCard: string = '';
 
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   getCardData(id: number, typeCard:string): Observable<any> {
     return this.http.get(`${this.domain}/${typeCard}/${id}`);

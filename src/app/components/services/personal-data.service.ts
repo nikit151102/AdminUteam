@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class PersonalDataService {
 
   visible: boolean = false;
 
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
    
   getCities(): Observable<any> {
     return this.http.get(`${this.domain}/cities`);

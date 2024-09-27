@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription, Subject } from 'rxjs';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAccountService {
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
   private subscription = new Subscription(); 
 
   constructor(private http: HttpClient) { }

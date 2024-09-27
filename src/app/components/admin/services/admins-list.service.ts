@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AdminsListService {
 
   constructor(private http: HttpClient) { }
 
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   getFunction(): Observable<any> {
     return this.http.get<any>(`${this.domain}/users?page=0&size=1000`,);
