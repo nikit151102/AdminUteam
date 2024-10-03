@@ -1,7 +1,16 @@
-<div class="container">
-    <app-header style="width: 100%;"></app-header>
-    <div style="width: 100%;">
-        <router-outlet></router-outlet>
-    </div>
+<div class="container" [class.sidebar-open]="isSidebarOpen">
 
-</div>
+    <div [class.shrink]="isSidebarOpen" class="header ">
+      <div class="btn-menu">
+        <p-button icon="pi pi-bars" [rounded]="true" [text]="true"  (click)="sidebarService.toggleSidebar()"/>
+      </div>
+    </div>
+  
+    <app-sidebar></app-sidebar>
+  
+    <div [class.shrink]="isSidebarOpen" class="content"  style="width: 100%;">
+      <router-outlet></router-outlet>
+    </div>
+  
+  </div>
+  
