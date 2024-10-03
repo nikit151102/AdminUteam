@@ -29,7 +29,7 @@ export class ResumesService {
   }
 
   deleteFunction(id: string) {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=');
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -39,7 +39,7 @@ export class ResumesService {
   }
 
   putFunction(body: any, id: any): Observable<any> {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=');
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -58,4 +58,26 @@ export class ResumesService {
       }
     );
   }
+
+  deleteCard(id: string) {
+    this.deleteFunction(id).subscribe(
+      (response: any) => {
+        
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  updateCard(product: any){
+    this.putFunction(product, product.id).subscribe(
+      (response: any) => {
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+  
 }

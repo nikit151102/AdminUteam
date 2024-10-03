@@ -7,11 +7,13 @@ import { FormsComponent } from './forms/forms.component';
 import { ListCardsService } from './list-cards.service';
 import { PaginatorModule } from 'primeng/paginator';
 import { Router } from '@angular/router';
-
+import { MenuModule } from 'primeng/menu';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TagModule } from 'primeng/tag';
 @Component({
   selector: 'app-list-cards',
   standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, ToastModule, FormsComponent, PaginatorModule],
+  imports: [CommonModule, MenuModule, OverlayPanelModule, TableModule, ButtonModule, ToastModule, FormsComponent, PaginatorModule, TagModule],
   templateUrl: './list-cards.component.html',
   styleUrl: './list-cards.component.css'
 })
@@ -25,6 +27,7 @@ export class ListCardsComponent {
   sortField = 'id';
 
   constructor(public listCardsService: ListCardsService, private router: Router) { }
+
 
   ngOnInit() {
     this.Service.getData();
@@ -48,16 +51,33 @@ export class ListCardsComponent {
   }
 
   viewCard(id: string) {
-    if(this.Service.type == "RESUME"){
+    if (this.Service.type === "RESUME") {
       localStorage.setItem('routeTypeCard', 'resumes');
-      return this.router.createUrlTree([`/resume`, id]).toString();
-    }else{
+      return this.router.createUrlTree([`/resume`, id]).toString(); // You might not need this if you're handling URL strings
+    } else {
       localStorage.setItem('routeTypeCard', 'vacancies');
-      return this.router.createUrlTree([`/vacancy`, id]).toString();
+      return this.router.createUrlTree([`/vacancy`, id]).toString(); // You might not need this if you're handling URL strings
     }
-   
   }
 
+  openInNewTab(url: string) {
+    window.open(url, '_blank');
+  }
+
+  deleteCard(id: string) {
+    this.Service.deleteCard(id);
+  }
+
+  editBan(product: any) {
+    if (product.visibility === "BAN") {
+      product.visibility = "CREATOR_ONLY"; 
+    } else {
+      product.visibility = "BAN"; 
+    }
+    this.Service.updateCard(product);
+
+  }
+  
 
   getSkillsColor(item: number): string {
     switch (item) {

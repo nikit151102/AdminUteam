@@ -19,6 +19,9 @@
                     Дата регистрации <p-sortIcon field="dateOfRegistration" />
                 </th>
                 <th style="width:15%">
+                    Статус
+                </th>
+                <th style="width:15%">
                 </th>
             </tr>
         </ng-template>
@@ -30,7 +33,38 @@
                 <td  *ngIf="Service.type !== 'RESUME'">{{ product?.title }}</td>
                 <td>{{ product?.profession?.name }}</td>
                 <td>{{ product.creationDate | date: 'dd/MM/yyyy' }}</td>
-                <td><a [href]="viewCard(product.id)" target="_blank">Перейти</a></td>
+                <td>
+                    <ng-container *ngIf="product?.visibility == 'CREATOR_ONLY' " >
+                        <p-tag severity="success" value="Активная"/> 
+                        <!-- зеленая -->
+                    </ng-container>
+                    <ng-container *ngIf="product?.visibility == 'BAN' " >
+                        <p-tag severity="danger" value="Бан"/> 
+                        <!-- красная  -->
+                    </ng-container>
+                    <ng-container *ngIf="product?.visibility == 'EVERYBODY' " >
+                        <p-tag severity="info" value="Архив"/> 
+                        <!-- синяя -->
+                    </ng-container>
+                    
+                </td>
+                <td>
+                    <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
+                    <p-overlayPanel #op>
+                        <div class="btnsSetting">
+                            <p-button
+                            icon="pi pi-file"
+                            label="Подробнее"
+                            [rounded]="true"
+                            [text]="true"
+                            (click)="openInNewTab(viewCard(product.id))">
+                          </p-button>
+                          
+                            <p-button icon="pi pi-pencil" label="Изменить статус бана" [rounded]="true" [text]="true" (click)="editBan(product)" />
+                            <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true" severity="danger"  (click)="deleteCard(product.id)"/>
+                        </div>
+                    </p-overlayPanel>
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="paginator">
