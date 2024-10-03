@@ -1,0 +1,57 @@
+<div style="display: flex; gap: 1rem;">
+    <p-fileUpload 
+      #fileUpload 
+      mode="basic" 
+      chooseLabel="Выбрать файл" 
+      chooseIcon="pi pi-upload"
+      name="demo[]" 
+      accept=".xlsx, .xls" 
+      maxFileSize="1000000" 
+      (onSelect)="onFileChange($event)" 
+    ></p-fileUpload>
+
+    <p-button 
+      *ngIf="fileUploaded" 
+      label="Очистить" 
+      icon="pi pi-times" 
+      text="true"
+      (click)="clearFile()" 
+    ></p-button>
+  </div>
+
+<div *ngIf="sheetNames.length > 0">
+  <h3>Выберите лист:</h3>
+  <select [(ngModel)]="selectedSheet" (change)="loadSheetData()">
+    <option *ngFor="let name of sheetNames" [value]="name">{{ name }}</option>
+  </select>
+</div>
+
+<div *ngIf="data.length > 0">
+  <h3>Функции работы с данными:</h3>
+  <label>Выберите колонку для действий:</label>
+  <select [(ngModel)]="selectedColumn">
+    <option *ngFor="let col of columns" [value]="col">{{ col }}</option>
+  </select>
+
+  <div style="display: flex; gap: 1rem;">
+    <p-button (click)="removeDuplicates(selectedColumn)" [text]="'Удалить дубликаты'">Удалить дубликаты</p-button>
+    <p-button (click)="sortData(selectedColumn)" [text]="getSortButtonLabel()">Сортровка</p-button>
+    <p-button (click)="findAndReplace()" [text]="'Поиск и замена'">Поиск и замена</p-button>
+    <p-button (click)="exportData()" [text]="'Экспортировать'">Экспортировать</p-button>
+    <p-button (click)="addRow()" [text]="'Добавить строку'">Добавить строку</p-button>
+  </div>
+
+  <h3>Текущие данные:</h3>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let col of columns">{{ col }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td *ngFor="let col of columns">{{ row[col] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

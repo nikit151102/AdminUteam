@@ -33,6 +33,9 @@ const routes: Routes = [
       {
         path: 'reservedNickname', loadChildren: () => import('./reserved-nickname/reserved-nickname.module').then(m => m.ReservedNicknameModule)
       },
+      {
+        path: 'excelHandler', loadChildren: () => import('./app-excel-handler/app-excel-handler.module').then(m => m.AppExcelHandlerModule)
+      },
     ]
   },
   

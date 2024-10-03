@@ -22,6 +22,7 @@ const routes: Routes = [
   {
     path: 'vacancy/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'vacancy' }
   },
+
   {
     path: 'error', component: PageErrorComponent
   },

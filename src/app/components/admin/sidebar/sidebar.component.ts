@@ -38,6 +38,10 @@ export class SidebarComponent implements OnInit {
     {
       label: 'Уведомления', icon: 'pi pi-bell', command: 'notifications'
     },
+      {
+      label: 'Инструменты', icon: 'pi pi-cog', command: 'excelHandler'
+    },
+    
     {
       label: 'Выйти', icon: 'pi pi-sign-out', command: 'exit'
     }
