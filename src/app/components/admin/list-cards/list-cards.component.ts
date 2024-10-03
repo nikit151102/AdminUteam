@@ -10,10 +10,17 @@ import { Router } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TagModule } from 'primeng/tag';
+import { MultiSelectModule } from 'primeng/multiselect';
+
+interface Type {
+  name: string,
+  code: string
+}
+
 @Component({
   selector: 'app-list-cards',
   standalone: true,
-  imports: [CommonModule, MenuModule, OverlayPanelModule, TableModule, ButtonModule, ToastModule, FormsComponent, PaginatorModule, TagModule],
+  imports: [CommonModule, MenuModule, OverlayPanelModule, MultiSelectModule, TableModule, ButtonModule, ToastModule, FormsComponent, PaginatorModule, TagModule],
   templateUrl: './list-cards.component.html',
   styleUrl: './list-cards.component.css'
 })
@@ -28,10 +35,41 @@ export class ListCardsComponent {
 
   constructor(public listCardsService: ListCardsService, private router: Router) { }
 
+  types!: Type[];
+
+  selectedtypes!: Type[];
+
 
   ngOnInit() {
-    this.Service.getData();
+    this.Service.getFunction().subscribe(
+      (response: any[]) => {
+        this.products = response;
+        this.Service.products = response;
+
+        this.selectedtypes = [...this.types];
+
+        this.filterProducts();
+      },
+      (error: any) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+
+    this.types = [
+      { name: 'Активные', code: 'CREATOR_ONLY' },
+      { name: 'Архив', code: 'EVERYBODY' },
+      { name: 'Бан', code: 'BAN' }
+    ];
+
+
   }
+
+
+  filterProducts() {
+      const selectedCodes = this.selectedtypes.map(type => type.code);
+      this.products = this.Service.products.filter((product: any) => selectedCodes.includes(product.visibility));
+  }
+
 
   expandAll() {
     this.expandedRows = this.products.reduce((acc, p) => (acc[p.id] = true) && acc, {});
@@ -70,14 +108,14 @@ export class ListCardsComponent {
 
   editBan(product: any) {
     if (product.visibility === "BAN") {
-      product.visibility = "CREATOR_ONLY"; 
+      product.visibility = "CREATOR_ONLY";
     } else {
-      product.visibility = "BAN"; 
+      product.visibility = "BAN";
     }
     this.Service.updateCard(product);
 
   }
-  
+
 
   getSkillsColor(item: number): string {
     switch (item) {
