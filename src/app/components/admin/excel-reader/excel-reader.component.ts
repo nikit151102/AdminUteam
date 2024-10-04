@@ -88,6 +88,7 @@ export class ExcelReaderComponent {
       next: (response: any) => {
         console.log('Data sent successfully:', response);
         this.checkIfAllDataSent();
+        this.Service.getdataStatusses();
       },
       error: (error: any) => {
         console.error('Error sending data:', error);
