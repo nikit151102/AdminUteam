@@ -1,18 +1,29 @@
+<div style="display: flex; flex-direction: column; gap: 10px;">
+  <p-button (click)="downloadFile()" [text]="true"> Образец </p-button>
 
-<p-button (click)="downloadFile()"  [text]="true" > Образец</p-button>
+  <div style="display: flex; gap: 1rem; align-items: flex-start;   flex-direction: column;">
+      <p-fileUpload 
+        #fileUpload 
+        mode="basic" 
+        chooseLabel="Выбрать файл" 
+        chooseIcon="pi pi-upload"
+        name="demo[]" 
+        accept=".xlsx, .xls" 
+        maxFileSize="1000000" 
+        (onSelect)="onFileChange($event)">
+      </p-fileUpload>
 
-<div style="display: flex; gap: 1rem;">
-    <p-fileUpload 
-    #fileUpload 
-    mode="basic" 
-    chooseLabel="Выбрать файл" 
-    chooseIcon="pi pi-upload"
-    name="demo[]" 
-    accept=".xlsx, .xls" 
-    maxFileSize="1000000" 
-    (onSelect)="onFileChange($event)" 
-  ></p-fileUpload>
+      <input type="number" placeholder="Кол-во строк в пакете" [(ngModel)]="batchSize" min="0" />
+      <p-button *ngIf="fileUploaded" icon="pi pi-save" (click)="sendData(fileUpload)" > </p-button>
 
-  <p-button *ngIf="fileUploaded" icon="pi pi-save" (click)="sendData(fileUpload)" [text]="true"></p-button>
+      
+  </div>
   
 </div>
+
+<p-dialog header="Успех!" [(visible)]="showPopup" modal="true" width="300px" height="150px" [closable]="true">
+    <p>Все теги были успешно добавлены!</p>
+    <p-footer>
+        <button pButton type="button" (click)="showPopup = false" label="Ок"></button>
+    </p-footer>
+</p-dialog>

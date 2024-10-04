@@ -3,19 +3,25 @@ import * as XLSX from 'xlsx';
 import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-excel-reader',
   standalone: true,
-  imports: [CommonModule, FileUploadModule, ButtonModule],
+  imports: [CommonModule, FileUploadModule,DialogModule, ButtonModule, FormsModule],
   templateUrl: './excel-reader.component.html',
-  styleUrl: './excel-reader.component.css'
+  styleUrls: ['./excel-reader.component.css']
 })
 export class ExcelReaderComponent {
   data: any[] = [];
   fileUploaded: boolean = false;
+  showPopup: boolean = false;
+  @Input() typeTags: string = '';
+  @Input() nameFile: string = '';
+  @Input() Service: any;
 
-  @Input() nameFile:string = '';
+  batchSize: number = 0;
 
   constructor() { }
 
@@ -23,7 +29,7 @@ export class ExcelReaderComponent {
     if (event.files && event.files.length > 0) {
       const file = event.files[0];
       const reader: FileReader = new FileReader();
-      
+
       reader.onload = (e: any) => {
         const binaryStr: string = e.target.result;
         const wb: XLSX.WorkBook = XLSX.read(binaryStr, { type: 'binary' });
@@ -48,27 +54,60 @@ export class ExcelReaderComponent {
   }
 
   sendData(fileUpload: FileUpload) {
-    console.log('Отправка данных:', this.data);
+    const totalData = this.data.length;
 
-    // Очистка состояния
+    if (this.batchSize > 0 && this.batchSize < totalData) {
+
+      for (let i = 0; i < totalData; i += this.batchSize) {
+        const chunk = this.data.slice(i, i + this.batchSize);
+        this.sendChunk(chunk);
+      }
+    } else {
+
+      this.sendChunk(this.data);
+    }
+
     this.data = [];
+    this.batchSize = 0;
     this.fileUploaded = false;
-
-    // Очистка загруженного файла
     fileUpload.clear();
   }
 
+  sendChunk(chunk: any[]) {
+    const tagsToSubmit = chunk.map((name, index) => {
+      return {
+        id: 0,
+        name: name,
+        nameEng: null,
+        competenceLevel: null,
+        type: this.typeTags,
+        color: null
+      };
+    });
+    this.Service.addsFunction(tagsToSubmit).subscribe({
+      next: (response: any) => {
+        console.log('Data sent successfully:', response);
+        this.checkIfAllDataSent();
+      },
+      error: (error: any) => {
+        console.error('Error sending data:', error);
+      }
+    });
+    console.log('Отправка данных (пакет):', tagsToSubmit);
+  }
+
+  checkIfAllDataSent() {
+    // После отправки всех данных покажи попап
+    if (this.data.length === 0) {
+      this.showPopup = true;  // Показываем попап
+    }
+  }
 
   downloadFile() {
-    // Путь к файлу в папке assets
-    const fileUrl = `assets/${this.nameFile}.xlsx`
-    
-    // Создание временной ссылки
+    const fileUrl = `assets/${this.nameFile}.xlsx`;
     const link = document.createElement('a');
     link.href = fileUrl;
-    link.download = `${this.nameFile}.xlsx`;  // Имя файла, как он будет сохраняться
-    
-    // Имитация клика на ссылку для начала загрузки
+    link.download = `${this.nameFile}.xlsx`;
     link.click();
   }
 }

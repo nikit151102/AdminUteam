@@ -58,4 +58,11 @@ export class SpecialtiesService {
       }
     );
   }
+
+  addsFunction(tags: tag[]): Observable<any> {
+    return this.http.post<any>(`${this.domain}/tags/addAll`,  tags, {
+      headers: { 'Content-Type': 'application/json' } 
+    });
+  }
+  
 }

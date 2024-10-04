@@ -4,7 +4,7 @@
 <ng-container *ngIf="Service.visibleForm">
     <div class="createStatus" >            
         <app-tag-form [Service]="Service" [tagData]="editTag" ></app-tag-form>
-            <!-- <app-excel-reader style="display: flex; flex-direction: row; gap: 0.5rem;" [nameFile]="'sample'"></app-excel-reader> -->
+            <app-excel-reader style="display: flex; flex-direction: row; gap: 0.5rem;" [nameFile]="'sample'" [typeTags]="Service.type" [Service]="Service"></app-excel-reader>
     </div>
 </ng-container>
 

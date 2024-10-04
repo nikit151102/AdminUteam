@@ -44,6 +44,7 @@ visibleForm:boolean = false;
       headers: { 'Content-Type': 'application/json' } 
     });
   }
+  
   getdataStatusses() {
     this.getFunction().subscribe(
       (response: tag[]) => {
@@ -54,4 +55,12 @@ visibleForm:boolean = false;
       }
     );
   }
+
+  addsFunction(tags: tag[]): Observable<any> {
+    return this.http.post<any>(`${this.domain}/tags/addAll`,  tags, {
+      headers: { 'Content-Type': 'application/json' } 
+    });
+  }
+
+
 }
