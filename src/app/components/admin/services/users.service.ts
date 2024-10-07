@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environment';
@@ -22,11 +22,34 @@ export class UsersService {
     this.getFunction().subscribe(
       (response: any[]) => {
         this.users = response;
-        console.log("this.users,",this.users)
+        console.log("this.users,", this.users)
       },
       (error: any) => {
         console.error('Error:', error);
       }
     );
   }
+
+  putBanFunction(user: any): Observable<any> {
+    const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put<any>(`${this.domain}/users/${user.id}`, user, { headers });
+  }
+
+  banUser(user: string) {
+    this.putBanFunction(user).subscribe(
+      (response: any[]) => {
+        this.users = response;
+        console.log("this.users,", this.users)
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
 }

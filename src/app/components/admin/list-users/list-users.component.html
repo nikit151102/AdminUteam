@@ -35,7 +35,27 @@
             <td>{{ user.nickname}}</td>
             <td>{{ user.telegram }}</td>
             <td>{{ user.dateOfRegistration | date: 'dd/MM/yyyy' }}</td>
-            <td><a [href]="viewUser(user.nickname)" target="_blank">Перейти</a></td>
+            <td>
+                <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
+                <p-overlayPanel #op>
+                    <div class="btnsSetting">
+                        
+                            <a [href]="viewUser(user.nickname)" target="_blank">
+                                <p-button icon="pi pi-file" label="Подробнее" [rounded]="true" [text]="true"
+                                >
+                            </p-button>
+                            </a>
+                    
+                        <p-button icon="pi pi-times"
+                            [label]="user.banned == true ? 'Разблокировать' : 'Заблокировать'"
+                            [rounded]="true" [text]="true" severity="danger"
+                            (click)="setBanDialog(user);  op.hide()" />
+                        <!-- <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true"
+                            severity="danger" (click)="deleteUser(user.id)" /> -->
+                    </div>
+                </p-overlayPanel>
+            </td>
+                
         </tr>
     </ng-template>
     <ng-template pTemplate="paginator">
@@ -44,3 +64,33 @@
 </p-table>
 
 <app-form-user *ngIf="listUsersService.visibleForm" [editData]="selectedUser" ></app-form-user>
+
+
+
+<div class="modal" *ngIf="isModalVisible">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>{{ selectUser.banned == true ? 'Снять блокировку' : 'Заблокировать доступ' }}</h2>
+        <p>Вы уверены, что хотите {{ selectUser.banned == true ? 'снять блокировку' : 'заблокировать доступ' }} для
+            этого пользователя?
+        </p>
+        <ng-container *ngIf="!selectUser.banned">
+            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="banReason"
+                [ngClass]="{'error': isBanReasonInvalid}" (ngModelChange)="validateBanReason()"></textarea>
+            <div *ngIf="isBanReasonInvalid" class="error-message">Причина блокировки обязательна.</div>
+        </ng-container>
+
+
+        <div class="btns">
+
+            <p-button icon="pi pi-pencil"
+                label="Да, {{ selectUser.banned == true ? 'снять блокировку' : 'заблокировать' }}" [rounded]="true"
+                [text]="true" (click)="banUser()" />
+
+            <p-button icon="pi pi-times" label="Отмена" [rounded]="true" [text]="true" severity="danger"
+                (click)="closeModal()" />
+        </div>
+
+
+    </div>
+</div>
