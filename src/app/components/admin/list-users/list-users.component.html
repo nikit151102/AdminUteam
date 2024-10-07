@@ -50,8 +50,8 @@
                             [label]="user.banned == true ? 'Разблокировать' : 'Заблокировать'"
                             [rounded]="true" [text]="true" severity="danger"
                             (click)="setBanDialog(user);  op.hide()" />
-                        <!-- <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true"
-                            severity="danger" (click)="deleteUser(user.id)" /> -->
+                        <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true"
+                            severity="danger" (click)="deleteUser(user.id)" />
                     </div>
                 </p-overlayPanel>
             </td>

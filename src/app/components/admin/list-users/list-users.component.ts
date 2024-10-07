@@ -86,5 +86,9 @@ export class ListUsersComponent {
   validateBanReason() {
     this.isBanReasonInvalid = this.banReason.trim() === '';
   }
+  
+  deleteUser(id: string){
+    this.usersService.deleteUser(id);
+  }
 
 }
