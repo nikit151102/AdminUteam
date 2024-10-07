@@ -50,22 +50,27 @@ export class UsersService {
     return this.http.delete<any>(`${this.domain}/users/${id}`, { headers });
   }
 
-  banUser(user: string) {
-    console.log("user",user)
+  banUser(user: any) {
+    console.log("user", user)
     this.putBanFunction(user).subscribe(
-      (response: any[]) => {
-        console.log("response",response)
+      (updatedUser: any) => {
+        // Заменяем объект в массиве на новый, который пришел с сервера
+        this.users = this.users.map((existingUser: any) => {
+          // Сравниваем id пользователя из массива с id обновленного пользователя
+          return existingUser.id === user.id ? updatedUser : existingUser;
+        });
       },
       (error: any) => {
         console.error('Error:', error);
       }
     );
   }
+  
 
-  deleteUser(id: string){
+  deleteUser(id: string) {
     this.deleteFunction(id).subscribe(
       (response: any[]) => {
-        this.users = this.users.filter((user:any) => user.id !== id);
+        this.users = this.users.filter((user: any) => user.id !== id);
       },
       (error: any) => {
         console.error('Error:', error);

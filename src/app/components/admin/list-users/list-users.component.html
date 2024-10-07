@@ -38,7 +38,6 @@
             <td>{{ user.nickname}}</td>
             <td>{{ user.telegram }}</td>
             <td>{{ user.dateOfRegistration | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ user.dateOfRegistration }}</td>
             <td> 
                 <ng-container *ngIf="user?.banned == false ">
                     <p-tag severity="success" value="Активный" />
