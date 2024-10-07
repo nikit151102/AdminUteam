@@ -47,6 +47,16 @@ export class VacanciesService {
     return this.http.put(`${this.domain}/vacancies//${id}`, body, { headers });
   }
 
+  putBanFunction(body: any, id: any): Observable<any> {
+    const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.domain}/vacancies/${id}`, body, { headers });
+  }
+
   getData() {
     this.getFunction().subscribe(
       (response: any[]) => {
@@ -78,4 +88,15 @@ export class VacanciesService {
       }
     );
   }
+
+  banCard(product: any){
+    this.putBanFunction(product, product.id).subscribe(
+      (response: any) => {
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
 }

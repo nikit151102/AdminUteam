@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TableModule, TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
@@ -11,6 +11,7 @@ import { MenuModule } from 'primeng/menu';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TagModule } from 'primeng/tag';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 interface Type {
   name: string,
@@ -20,7 +21,7 @@ interface Type {
 @Component({
   selector: 'app-list-cards',
   standalone: true,
-  imports: [CommonModule, MenuModule, OverlayPanelModule, MultiSelectModule, TableModule, ButtonModule, ToastModule, FormsComponent, PaginatorModule, TagModule],
+  imports: [CommonModule, MenuModule, OverlayPanelModule, InputTextareaModule, MultiSelectModule, TableModule, ButtonModule, ToastModule, FormsComponent, PaginatorModule, TagModule],
   templateUrl: './list-cards.component.html',
   styleUrl: './list-cards.component.css'
 })
@@ -32,13 +33,16 @@ export class ListCardsComponent {
   totalUsers = 0;
   sortOrder = 1;
   sortField = 'id';
+  isModalVisible: boolean = false; // Для управления видимостью модального окна
+  isBanned: boolean = false; // Флаг заблокирован/разблокирован
+  banReason: string = '';
+  isBanReasonInvalid: boolean = false;
 
   constructor(public listCardsService: ListCardsService, private router: Router) { }
 
   types!: Type[];
 
   selectedtypes!: Type[];
-
 
   ngOnInit() {
     this.Service.getFunction().subscribe(
@@ -66,10 +70,54 @@ export class ListCardsComponent {
 
 
   filterProducts() {
-      const selectedCodes = this.selectedtypes.map(type => type.code);
-      this.products = this.Service.products.filter((product: any) => selectedCodes.includes(product.visibility));
+    const selectedCodes = this.selectedtypes.map(type => type.code);
+    this.products = this.Service.products.filter((product: any) => selectedCodes.includes(product.visibility));
   }
 
+
+
+
+  openModal() {
+    this.isModalVisible = true;
+  }
+
+  closeModal() {
+    this.selectCard = '';
+    this.isModalVisible = false;
+  }
+
+
+  selectCard: any;
+
+  setBanDialog(product: any) {
+    this.selectCard = product;
+    this.openModal()
+  }
+
+  banCard() {
+
+    if (this.selectCard.visibility === "BAN") {
+      this.selectCard.visibility = "CREATOR_ONLY";
+    } else {
+      if (this.banReason.trim() === '') {
+        this.isBanReasonInvalid = true;
+        return;
+      } else {
+        this.selectCard.visibility = "BAN";
+        this.selectCard.banReason = this.banReason;
+      }
+    }
+
+    this.Service.banCard(this.selectCard);
+    this.isBanned = !this.isBanned;
+    this.banReason = '';
+    this.closeModal();
+  }
+
+
+  validateBanReason() {
+    this.isBanReasonInvalid = this.banReason.trim() === '';
+  }
 
   expandAll() {
     this.expandedRows = this.products.reduce((acc, p) => (acc[p.id] = true) && acc, {});

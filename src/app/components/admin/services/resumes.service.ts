@@ -48,6 +48,16 @@ export class ResumesService {
     return this.http.put(`${this.domain}/resumes//${id}`, body, { headers });
   }
 
+  putBanFunction(body: any, id: any): Observable<any> {
+    const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.domain}/resumes/${id}`, body, { headers });
+  }
+
   getData() {
     this.getFunction().subscribe(
       (response: any[]) => {
@@ -72,6 +82,17 @@ export class ResumesService {
 
   updateCard(product: any){
     this.putFunction(product, product.id).subscribe(
+      (response: any) => {
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+
+  banCard(product: any){
+    this.putBanFunction(product, product.id).subscribe(
       (response: any) => {
       },
       (error: any) => {
