@@ -23,6 +23,9 @@
                 Дата регистрации <p-sortIcon field="dateOfRegistration" />
             </th>
             <th style="width:15%">
+                Статус
+            </th>
+            <th style="width:15%">
             </th>
         </tr>
     </ng-template>
@@ -35,6 +38,17 @@
             <td>{{ user.nickname}}</td>
             <td>{{ user.telegram }}</td>
             <td>{{ user.dateOfRegistration | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ user.dateOfRegistration }}</td>
+            <td> 
+                <ng-container *ngIf="user?.banned == false ">
+                    <p-tag severity="success" value="Активный" />
+                    <!-- зеленая -->
+                </ng-container>
+                <ng-container *ngIf="user?.banned == true ">
+                    <p-tag severity="danger" value="Бан" />
+                    <!-- красная  -->
+                </ng-container>
+            </td>
             <td>
                 <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
                 <p-overlayPanel #op>

@@ -8,11 +8,12 @@ import { ListUsersService } from './list-users.service';
 import { FormUserComponent } from './form-user/form-user.component';
 import { Router } from '@angular/router';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-list-users',
   standalone: true,
-  imports: [TableModule, CommonModule, PaginatorModule, ButtonModule, FormUserComponent, OverlayPanelModule],
+  imports: [TableModule, CommonModule, PaginatorModule, ButtonModule, FormUserComponent, OverlayPanelModule, TagModule],
   templateUrl: './list-users.component.html',
   styleUrl: './list-users.component.css'
 })
