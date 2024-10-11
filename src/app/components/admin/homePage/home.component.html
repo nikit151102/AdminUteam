@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="column-40">
+            <app-general-stat></app-general-stat>
+        </div>
+        <div class="column-60 adminsList">
+            <app-admins-list></app-admins-list>
+        </div>
+    </div>
+    <div class="cards-container">
+        <div *ngFor="let item of menuItems" class="card" (click)="executeCommand(item.command)">
+          <div class="card-content">
+            <i class="pi" [ngClass]="item.icon" style="font-size: 2rem; color: #3498db;"></i>
+            <h3>{{ item.label }}</h3>
+          </div>
+        </div>
+      </div>
+      
+</div>

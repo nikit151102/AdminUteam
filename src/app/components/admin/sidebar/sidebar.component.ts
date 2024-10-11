@@ -18,6 +18,9 @@ export class SidebarComponent implements OnInit {
       label: 'Главная', icon: 'pi pi-home', command: 'home'
     },
     {
+      label: 'Персонал', icon: 'pi pi-home', command: 'personal'
+    },
+    {
       label: 'Пользователи', icon: 'pi pi-users', command: 'users'
     },
     {

@@ -1,0 +1,118 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    
+    .row {
+        display: flex;
+        flex-direction: row;
+        height: 400px;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .column-40 {
+        flex: 40%;
+    }
+
+    .column-60 {
+        flex: 60%;
+    }
+
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+        gap: 20px;
+        padding-top: 20px;
+
+      }
+      
+      .card {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      }
+      
+      .card-content i {
+        font-size: 2.5rem;
+        color: #3498db;
+      }
+      
+      .card-content h3 {
+        font-size: 1.5rem;
+        color: #2c3e50;
+        margin-top: 10px;
+      }
+      
+      @media (max-width: 1200px) {
+        .row {
+            flex-direction: column; 
+        }
+
+        .column-40, .column-60 {
+            flex: 100%;
+        }
+        .adminsList{
+            display: none;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .cards-container {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+        }
+
+        .card-content i {
+            font-size: 2rem; 
+        }
+
+        .card-content h3 {
+            font-size: 1.25rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .cards-container {
+            grid-template-columns: 1fr; 
+        }
+
+        .row {
+            flex-direction: column; 
+        }
+
+        .card {
+            padding: 15px; 
+        }
+
+        .card-content i {
+            font-size: 1.75rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card {
+            padding: 10px;
+        }
+
+        .card-content i {
+            font-size: 1.5rem;
+        }
+
+        .card-content h3 {
+            font-size: 1rem;
+        }
+    }
+}

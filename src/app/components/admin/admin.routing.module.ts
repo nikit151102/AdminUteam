@@ -10,7 +10,10 @@ const routes: Routes = [
         path: '', redirectTo: 'home', pathMatch: 'full' // Автоматический переход на 'home'
       },
       {
-        path: 'home', loadChildren: () => import('./admins-list/admins-list.module').then(m => m.AdminsListModule)
+        path: 'home', loadChildren: () => import('./homePage/home.module').then(m => m.HomesModule)
+      },
+      {
+        path: 'personal', loadChildren: () => import('./admins-list/admins-list.module').then(m => m.AdminsListModule)
       },
       {
         path: 'users', loadChildren: () => import('./list-users/list-users.module').then(m => m.UsersListModule)
