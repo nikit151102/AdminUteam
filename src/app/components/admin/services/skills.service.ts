@@ -19,17 +19,17 @@ export class SkillsService {
   private stages: any;
   products: any;
   type = "SKILL";
-visibleForm:boolean = false;
+  visibleForm: boolean = false;
   constructor(private http: HttpClient) { }
   private domain = `${environment.apiUrl}`;
 
-  getFunction(): Observable<any> {
-    return this.http.get<any>(`${this.domain}/tags?types=SKILL`,);
+  getFunction(page: any): Observable<any> {
+    return this.http.get<any>(`${this.domain}/tags?page=${page}&size=1000&types=${this.type}`,);
   }
 
   addFunction(tag: tag): Observable<any> {
-    return this.http.post<any>(`${this.domain}/tags`,  tag, {
-      headers: { 'Content-Type': 'application/json' } 
+    return this.http.post<any>(`${this.domain}/tags`, tag, {
+      headers: { 'Content-Type': 'application/json' }
     });
 
   }
@@ -41,24 +41,37 @@ visibleForm:boolean = false;
 
   putFunction(tag: tag, id: string): Observable<any> {
     return this.http.put<any>(`${this.domain}/tags/${id}`, tag, {
-      headers: { 'Content-Type': 'application/json' } 
+      headers: { 'Content-Type': 'application/json' }
     });
   }
-  
-  getdataStatusses() {
-    this.getFunction().subscribe(
+
+  loading: boolean = false;
+  page: any = 0
+
+  getDataStatuses() {
+    this.loading = true; 
+    this.getFunction(this.page).subscribe(
       (response: tag[]) => {
-        this.products = response;
+        if (response.length > 0) {
+          this.products = [...(this.products || []), ...response]; 
+          this.page += 1; 
+          console.log("this.page",this.page)
+          this.getDataStatuses()
+        }else{
+          
+        }
       },
       (error: any) => {
+        this.loading = false; 
         console.error('Error:', error);
       }
     );
   }
+  
 
   addsFunction(tags: tag[]): Observable<any> {
-    return this.http.post<any>(`${this.domain}/tags/addAll`,  tags, {
-      headers: { 'Content-Type': 'application/json' } 
+    return this.http.post<any>(`${this.domain}/tags/addAll`, tags, {
+      headers: { 'Content-Type': 'application/json' }
     });
   }
 

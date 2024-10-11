@@ -42,7 +42,7 @@ export class TagsComponent {
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
-    this.Service.getdataStatusses()
+    this.Service.getDataStatuses()
   }
 
   addTag() {
