@@ -15,7 +15,6 @@
     background: #ffffff;
     padding: 20px;
     border-radius: 20px;
-    width: 70vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,6 +25,13 @@
     display: flex;
     margin-top: 10px;
     box-sizing: border-box;
+}
+
+.btnCancel{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .content {
@@ -48,7 +54,7 @@
     border-radius: 1.5rem;
     padding: 1rem 1.3rem;
     box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
-    background: #b9aeff;
+    /* background: #b9aeff; */
 }
 
 .gender_title {

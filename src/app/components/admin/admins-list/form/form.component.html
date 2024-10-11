@@ -1,53 +1,57 @@
-<p-button label="Добавить"  (onClick)="addUser()" *ngIf="!visibleForm"/>
-<p-button label="Скрыть"  (onClick)="resetForm()" *ngIf="visibleForm"/>
+<p-button label="Добавить" (click)="showModal()" />
 
-<ng-container *ngIf="visibleForm">
-    <div class="container">
-        <form [formGroup]="personalDataForm">
-            <div class="content">
-                <div class="content-column">
-                    <div class="chapter">
-                        <div class="chapter-content">
-                            <div class="gender_title">Пол:</div>
-                    <div style="display: flex; flex-direction: row; gap: 3rem">
-                        <div style="display: flex; gap: 1rem;">
-                            <p-radioButton name="gender" value="MALE" formControlName="gender"
-                                inputId="male"></p-radioButton>
-                            <label for="male" class="ml-2">Мужской</label>
-                        </div>
-                        <div style="display: flex; gap: 1rem;">
-                            <p-radioButton name="gender" value="FEMALE" formControlName="gender"
-                                inputId="female"></p-radioButton>
-                            <label for="female" class="ml-2">Женский</label>
-                        </div>
-                    </div>
-                    
-                            <div class="input-group">
-                                <label for="email">Email:</label>
-                                <input type="text" id="email" formControlName="email" placeholder="Введите email ">
-                                <div *ngIf="personalDataForm.get('email')?.invalid && (personalDataForm.get('email')?.dirty || personalDataForm.get('email')?.touched)"
-                                    class="error-message">
-                                    <div *ngIf="personalDataForm.get('email')?.errors?.['required']">Email
-                                        обязателен для заполнения.</div>
-                                    <div *ngIf="personalDataForm.get('email')?.errors?.['email']">Введите корректный
-                                        email.</div>
+<div class="popup-overlay" *ngIf="visibleModal" (click)="hideModal()">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <div class="btnCancel">
+            <p-button label="Скрыть" (click)="hideModal()"  [text]="true"/>
+        </div>
+
+        <div class="container">
+            <form [formGroup]="personalDataForm" (ngSubmit)="onSubmit()">
+                <div class="content">
+                    <div class="content-column">
+                        <div class="chapter">
+                            <div class="chapter-content">
+                                <div class="gender_title">Пол:</div>
+                                <div style="display: flex; flex-direction: row; gap: 3rem">
+                                    <div style="display: flex; gap: 1rem;">
+                                        <p-radioButton name="gender" value="MALE" formControlName="gender"
+                                            inputId="male"></p-radioButton>
+                                        <label for="male" class="ml-2">Мужской</label>
+                                    </div>
+                                    <div style="display: flex; gap: 1rem;">
+                                        <p-radioButton name="gender" value="FEMALE" formControlName="gender"
+                                            inputId="female"></p-radioButton>
+                                        <label for="female" class="ml-2">Женский</label>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="email">Email:</label>
+                                    <input type="text" id="email" formControlName="email" placeholder="Введите email">
+                                    <div *ngIf="personalDataForm.get('email')?.invalid && (personalDataForm.get('email')?.dirty || personalDataForm.get('email')?.touched)"
+                                        class="error-message">
+                                        <div *ngIf="personalDataForm.get('email')?.errors?.['required']">Email
+                                            обязателен для заполнения.</div>
+                                        <div *ngIf="personalDataForm.get('email')?.errors?.['email']">Введите корректный
+                                            email.</div>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="telegram">Telegram:</label>
+                                    <input type="text" id="telegram" formControlName="telegram"
+                                        placeholder="Введите telegram">
+                                    <div *ngIf="personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty || personalDataForm.get('telegram')?.touched)"
+                                        class="error-message">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="input-group">
-                                <label for="telegram">Telegram:</label>
-                                <input type="text" id="telegram" formControlName="telegram" placeholder="Введите telegram">
-                                <div *ngIf="personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty || personalDataForm.get('telegram')?.touched)"
-                                    class="error-message">
-    
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <div class="chapter">
-                        <button class="btnSave" type="submit" (click)="onSubmit()">Сохранить</button>
+                        <div class="chapter">
+                            <button class="btnSave" type="submit">Сохранить</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</ng-container>
+</div>

@@ -13,7 +13,7 @@ import { AdminsListService } from '../../services/admins-list.service';
   styleUrl: './form.component.css'
 })
 export class FormComponent implements OnInit {
-
+  visibleModal: boolean = false; 
   visibleForm: boolean = false;
   personalDataForm!: FormGroup;
 
@@ -51,6 +51,14 @@ export class FormComponent implements OnInit {
 
   addUser() {
     this.visibleForm = true;
+  }
+  
+  showModal() {
+    this.visibleModal = true;
+  }
+
+  hideModal() {
+    this.visibleModal = false;
   }
 
   onSubmit(): void {
