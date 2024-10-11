@@ -1,109 +1,110 @@
-<p-table [value]="usersService.users" [rows]="rowsPerPage" [paginator]="true" [totalRecords]="totalUsers" [pageLinks]="5" [rowsPerPageOptions]="[3, 10, 25, 50, 100]" [sortField]="sortField" [sortOrder]="sortOrder">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>
- 
-            </th>
-            <th pSortableColumn="id" style="width:10%">
-                ID <p-sortIcon field="id" />
-            </th>
-            <th pSortableColumn="firstName" style="width:15%">
-                Имя <p-sortIcon field="firstName" />
-            </th>
-            <th pSortableColumn="lastName" style="width:15%">
-                Фамилия <p-sortIcon field="lastName" />
-            </th>
-            <th pSortableColumn="nickname" style="width:20%">
-                Логин <p-sortIcon field="nickname" />
-            </th>
-            <th pSortableColumn="telegram" style="width:15%">
-                Телеграм <p-sortIcon field="telegram" />
-            </th>
-            <th pSortableColumn="dateOfRegistration" style="width:20%">
-                Дата регистрации <p-sortIcon field="dateOfRegistration" />
-            </th>
-            <th style="width:15%">
-                Статус
-            </th>
-            <th style="width:15%">
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
-        <tr>
-            <td><p-button icon="pi pi-pencil" [text]="true" (onClick)="editUser(user)"/></td>
-            <td>{{ user.id }}</td>
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-            <td>{{ user.nickname}}</td>
-            <td>{{ user.telegram }}</td>
-            <td>{{ user.dateOfRegistration | date: 'dd/MM/yyyy' }}</td>
-            <td> 
-                <ng-container *ngIf="user?.banned == false ">
-                    <p-tag severity="success" value="Активный" />
-                    <!-- зеленая -->
+<div class="container">
+
+    <div #tableContainer class="table-wrapper" (scroll)="onTableScroll($event)">
+        <p-table  [value]="users" [rows]="rowsPerPage" [sortField]="sortField" [sortOrder]="sortOrder" >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>
+
+                    </th>
+                    <th pSortableColumn="id" style="width:10%">
+                        ID <p-sortIcon field="id" />
+                    </th>
+                    <th pSortableColumn="firstName" style="width:15%">
+                        Имя <p-sortIcon field="firstName" />
+                    </th>
+                    <th pSortableColumn="lastName" style="width:15%">
+                        Фамилия <p-sortIcon field="lastName" />
+                    </th>
+                    <th pSortableColumn="nickname" style="width:20%">
+                        Логин <p-sortIcon field="nickname" />
+                    </th>
+                    <th pSortableColumn="telegram" style="width:15%">
+                        Телеграм <p-sortIcon field="telegram" />
+                    </th>
+                    <th pSortableColumn="dateOfRegistration" style="width:20%">
+                        Дата регистрации <p-sortIcon field="dateOfRegistration" />
+                    </th>
+                    <th style="width:15%">
+                        Статус
+                    </th>
+                    <th style="width:15%">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td><p-button icon="pi pi-pencil" [text]="true" (onClick)="editUser(user)" /></td>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.nickname}}</td>
+                    <td>{{ user.telegram }}</td>
+                    <td>{{ user.dateOfRegistration | date: 'dd/MM/yyyy' }}</td>
+                    <td>
+                        <ng-container *ngIf="user?.banned == false ">
+                            <p-tag severity="success" value="Активный" />
+                            <!-- зеленая -->
+                        </ng-container>
+                        <ng-container *ngIf="user?.banned == true ">
+                            <p-tag severity="danger" value="Бан" />
+                            <!-- красная  -->
+                        </ng-container>
+                    </td>
+                    <td>
+                        <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
+                        <p-overlayPanel #op>
+                            <div class="btnsSetting">
+
+                                <a [href]="viewUser(user.nickname)" target="_blank">
+                                    <p-button icon="pi pi-file" label="Подробнее" [rounded]="true" [text]="true">
+                                    </p-button>
+                                </a>
+
+                                <p-button icon="pi pi-times"
+                                    [label]="user.banned == true ? 'Разблокировать' : 'Заблокировать'" [rounded]="true"
+                                    [text]="true" severity="danger" (click)="setBanDialog(user);  op.hide()" />
+                                <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true"
+                                    severity="danger" (click)="deleteUser(user.id)" />
+                            </div>
+                        </p-overlayPanel>
+                    </td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <app-form-user *ngIf="listUsersService.visibleForm" [editData]="selectedUser"></app-form-user>
+
+
+
+        <div class="modal" *ngIf="isModalVisible">
+            <div class="modal-content">
+                <span class="close" (click)="closeModal()">&times;</span>
+                <h2>{{ selectUser.banned == true ? 'Снять блокировку' : 'Заблокировать доступ' }}</h2>
+                <p>Вы уверены, что хотите {{ selectUser.banned == true ? 'снять блокировку' : 'заблокировать доступ' }}
+                    для
+                    этого пользователя?
+                </p>
+                <ng-container *ngIf="!selectUser.banned">
+                    <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="banReason"
+                        [ngClass]="{'error': isBanReasonInvalid}" (ngModelChange)="validateBanReason()"></textarea>
+                    <div *ngIf="isBanReasonInvalid" class="error-message">Причина блокировки обязательна.</div>
                 </ng-container>
-                <ng-container *ngIf="user?.banned == true ">
-                    <p-tag severity="danger" value="Бан" />
-                    <!-- красная  -->
-                </ng-container>
-            </td>
-            <td>
-                <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
-                <p-overlayPanel #op>
-                    <div class="btnsSetting">
-                        
-                            <a [href]="viewUser(user.nickname)" target="_blank">
-                                <p-button icon="pi pi-file" label="Подробнее" [rounded]="true" [text]="true"
-                                >
-                            </p-button>
-                            </a>
-                    
-                        <p-button icon="pi pi-times"
-                            [label]="user.banned == true ? 'Разблокировать' : 'Заблокировать'"
-                            [rounded]="true" [text]="true" severity="danger"
-                            (click)="setBanDialog(user);  op.hide()" />
-                        <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true"
-                            severity="danger" (click)="deleteUser(user.id)" />
-                    </div>
-                </p-overlayPanel>
-            </td>
-                
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="paginator">
-        <p-paginator [rows]="rowsPerPage" [totalRecords]="totalUsers" [rowsPerPageOptions]="[3, 10, 25, 50, 100]"></p-paginator>
-    </ng-template>
-</p-table>
-
-<app-form-user *ngIf="listUsersService.visibleForm" [editData]="selectedUser" ></app-form-user>
 
 
+                <div class="btns">
 
-<div class="modal" *ngIf="isModalVisible">
-    <div class="modal-content">
-        <span class="close" (click)="closeModal()">&times;</span>
-        <h2>{{ selectUser.banned == true ? 'Снять блокировку' : 'Заблокировать доступ' }}</h2>
-        <p>Вы уверены, что хотите {{ selectUser.banned == true ? 'снять блокировку' : 'заблокировать доступ' }} для
-            этого пользователя?
-        </p>
-        <ng-container *ngIf="!selectUser.banned">
-            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="banReason"
-                [ngClass]="{'error': isBanReasonInvalid}" (ngModelChange)="validateBanReason()"></textarea>
-            <div *ngIf="isBanReasonInvalid" class="error-message">Причина блокировки обязательна.</div>
-        </ng-container>
+                    <p-button icon="pi pi-pencil"
+                        label="Да, {{ selectUser.banned == true ? 'снять блокировку' : 'заблокировать' }}"
+                        [rounded]="true" [text]="true" (click)="banUser()" />
+
+                    <p-button icon="pi pi-times" label="Отмена" [rounded]="true" [text]="true" severity="danger"
+                        (click)="closeModal()" />
+                </div>
 
 
-        <div class="btns">
-
-            <p-button icon="pi pi-pencil"
-                label="Да, {{ selectUser.banned == true ? 'снять блокировку' : 'заблокировать' }}" [rounded]="true"
-                [text]="true" (click)="banUser()" />
-
-            <p-button icon="pi pi-times" label="Отмена" [rounded]="true" [text]="true" severity="danger"
-                (click)="closeModal()" />
+            </div>
         </div>
-
-
     </div>
 </div>

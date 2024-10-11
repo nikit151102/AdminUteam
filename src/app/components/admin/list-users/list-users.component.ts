@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
@@ -19,9 +19,10 @@ import { TagModule } from 'primeng/tag';
 })
 export class ListUsersComponent {
 
-  users = [];
+  users: any[] = [];
   selectedUser: any | null = null;
   rowsPerPage = 10;
+  page = 0;
   totalUsers = 0;
   sortField = 'id';
   sortOrder = 1;
@@ -29,14 +30,49 @@ export class ListUsersComponent {
   isBanned: boolean = false; // Флаг заблокирован/разблокирован
   banReason: string = '';
   isBanReasonInvalid: boolean = false;
-  constructor(public usersService: UsersService, private router: Router, public listUsersService: ListUsersService) { }
+  loading = true;
+  isAllCard: boolean = false;
+
+  constructor(public usersService: UsersService, private router: Router,  private cd: ChangeDetectorRef,  public listUsersService: ListUsersService) { }
 
   ngOnInit() {
     this.loadUsers();
   }
+  
+  @HostListener('scroll', ['$event'])
+  onTableScroll(event: any) {
+    if(!this.isAllCard){
+      const element = event.target;
+      const pos = element.scrollTop + element.offsetHeight;
+      const max = element.scrollHeight;
+  
+      if (pos >= max - 50 && !this.loading) {
+        this.page++;
+        this.loadUsers();
+      }
+    }
+  }
 
+
+ 
   loadUsers() {
-    this.usersService.getdata()
+    this.loading = true;
+    this.usersService.getFunction(this.page, this.rowsPerPage).subscribe(
+      (response: any[]) => {
+        if (response.length > 0) {
+          this.users = [...(this.users || []), ...response];
+          this.loading = false;
+          this.cd.detectChanges();
+        } else {
+          this.loading = false;
+          this.isAllCard = true;
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching data:', error);
+        this.loading = false;
+      }
+    );
   }
 
   editUser(user: any) {

@@ -14,21 +14,10 @@ export class UsersService {
 
   private domain = `${environment.apiUrl}`;
 
-  getFunction(): Observable<any> {
-    return this.http.get<any>(`${this.domain}/users?page=0&size=1000`,);
+  getFunction(page: any, rowsPerPage: any): Observable<any> {
+    return this.http.get<any>(`${this.domain}/users?page=${page}&size=${rowsPerPage}`);
   }
 
-  getdata() {
-    this.getFunction().subscribe(
-      (response: any[]) => {
-        this.users = response;
-        console.log("this.users,", this.users)
-      },
-      (error: any) => {
-        console.error('Error:', error);
-      }
-    );
-  }
 
   putBanFunction(user: any): Observable<any> {
     const token = localStorage.getItem('YXV0aEFkbWluVG9rZW4=');

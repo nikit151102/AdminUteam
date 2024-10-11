@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, Input, ViewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TableModule, TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
@@ -26,10 +26,12 @@ interface Type {
   styleUrl: './list-cards.component.css'
 })
 export class ListCardsComponent {
-  products!: any[];
+
+  products: any[] = [];
   @Input() Service!: any;
   expandedRows = {};
-  rowsPerPage = 10;
+  rowsPerPage = 20;
+  page = 0;
   totalUsers = 0;
   sortOrder = 1;
   sortField = 'id';
@@ -37,41 +39,68 @@ export class ListCardsComponent {
   isBanned: boolean = false; // Флаг заблокирован/разблокирован
   banReason: string = '';
   isBanReasonInvalid: boolean = false;
+  loading = true;
+  isAllCard: boolean = false;
 
-  constructor(public listCardsService: ListCardsService, private router: Router) { }
+  constructor(public listCardsService: ListCardsService, private cd: ChangeDetectorRef, private router: Router) { }
 
-  types!: Type[];
+  types: Type[] = [];
 
-  selectedtypes!: Type[];
+  selectedtypes: Type[] = [];
 
   ngOnInit() {
-    this.Service.getFunction().subscribe(
-      (response: any[]) => {
-        this.products = response;
-        this.Service.products = response;
-
-        this.selectedtypes = [...this.types];
-
-        this.filterProducts();
-      },
-      (error: any) => {
-        console.error('Error fetching data:', error);
-      }
-    );
-
     this.types = [
       { name: 'Активные', code: 'CREATOR_ONLY' },
       { name: 'Архив', code: 'EVERYBODY' },
       { name: 'Бан', code: 'BAN' }
     ];
+    this.selectedtypes = this.types;
+
+    this.fetchData();
+  }
 
 
+
+  @HostListener('scroll', ['$event'])
+  onTableScroll(event: any) {
+    if(!this.isAllCard){
+      const element = event.target;
+      const pos = element.scrollTop + element.offsetHeight;
+      const max = element.scrollHeight;
+  
+      if (pos >= max - 50 && !this.loading) {
+        this.page++;
+        this.fetchData();
+      }
+    }
+  }
+
+
+  fetchData() {
+    this.loading = true;
+    this.Service.getFunction(this.page, this.rowsPerPage).subscribe(
+      (response: any[]) => {
+        if (response.length > 0) {
+          this.products = [...(this.products || []), ...response];
+          this.filterProducts();
+          this.loading = false;
+          this.cd.detectChanges();
+        } else {
+          this.loading = false;
+          this.isAllCard = true;
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching data:', error);
+        this.loading = false;
+      }
+    );
   }
 
 
   filterProducts() {
     const selectedCodes = this.selectedtypes.map(type => type.code);
-    this.products = this.Service.products.filter((product: any) => selectedCodes.includes(product.visibility));
+    this.products = this.products.filter((product: any) => selectedCodes.includes(product.visibility));
   }
 
 

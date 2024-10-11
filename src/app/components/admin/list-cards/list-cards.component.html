@@ -1,112 +1,112 @@
-<div class="card">
+
+
+<div class="container">
     <p-multiSelect [options]="types" [(ngModel)]="selectedtypes" optionLabel="name" placeholder="Выбрать тип карточек"
         (onChange)="filterProducts()" />
 
-    <p-table [value]="products" [rows]="rowsPerPage" [paginator]="true" [totalRecords]="totalUsers" [pageLinks]="5"
-        [rowsPerPageOptions]="[3, 10, 25, 50, 100]" [sortField]="sortField" [sortOrder]="sortOrder">
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="id" style="width:10%">
-                    ID <p-sortIcon field="id" />
-                </th>
-                <th style="width:15%">
-                    Логин
-                </th>
-                <th pSortableColumn="title" style="width:15%" *ngIf="Service.type !== 'RESUME'">
-                    Название
-                </th>
-                <th pSortableColumn="lastName" style="width:15%">
-                    Специальность
-                </th>
-                <th pSortableColumn="dateOfRegistration" style="width:20%">
-                    Дата регистрации <p-sortIcon field="dateOfRegistration" />
-                </th>
-                <th style="width:15%">
-                    Статус
-                </th>
-                <th style="width:15%">
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <tr>
-                <td>{{ product?.id }}</td>
-                <td *ngIf="product?.user?.nickname">{{ product?.user?.nickname }}</td>
-                <td *ngIf="!product?.user?.nickname">{{ product?.user?.id }}</td>
-                <td *ngIf="Service.type !== 'RESUME'">{{ product?.title }}</td>
-                <td>{{ product?.profession?.name }}</td>
-                <td>{{ product.creationDate | date: 'dd/MM/yyyy' }}</td>
-                <td>
-                    <ng-container *ngIf="product?.visibility == 'CREATOR_ONLY' ">
-                        <p-tag severity="success" value="Активная" />
-                        <!-- зеленая -->
-                    </ng-container>
-                    <ng-container *ngIf="product?.visibility == 'BAN' ">
-                        <p-tag severity="danger" value="Бан" />
-                        <!-- красная  -->
-                    </ng-container>
-                    <ng-container *ngIf="product?.visibility == 'EVERYBODY' ">
-                        <p-tag severity="info" value="Архив" />
-                        <!-- синяя -->
-                    </ng-container>
+        <div #tableContainer class="table-wrapper" (scroll)="onTableScroll($event)">
+        <p-table  [value]="products" [rows]="rowsPerPage" [sortField]="sortField" [sortOrder]="sortOrder" >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id" style="width:10%">
+                        ID <p-sortIcon field="id" />
+                    </th>
+                    <th style="width:15%">
+                        Логин
+                    </th>
+                    <th pSortableColumn="title" style="width:15%" *ngIf="Service.type !== 'RESUME'">
+                        Название
+                    </th>
+                    <th pSortableColumn="lastName" style="width:15%">
+                        Специальность
+                    </th>
+                    <th pSortableColumn="dateOfRegistration" style="width:20%">
+                        Дата регистрации <p-sortIcon field="dateOfRegistration" />
+                    </th>
+                    <th style="width:15%">
+                        Статус
+                    </th>
+                    <th style="width:15%">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{ product?.id }}</td>
+                    <td *ngIf="product?.user?.nickname">{{ product?.user?.nickname }}</td>
+                    <td *ngIf="!product?.user?.nickname">{{ product?.user?.id }}</td>
+                    <td *ngIf="Service.type !== 'RESUME'">{{ product?.title }}</td>
+                    <td>{{ product?.profession?.name }}</td>
+                    <td>{{ product.creationDate | date: 'dd/MM/yyyy' }}</td>
+                    <td>
+                        <ng-container *ngIf="product?.visibility == 'CREATOR_ONLY' ">
+                            <p-tag severity="success" value="Активная" />
+                            <!-- зеленая -->
+                        </ng-container>
+                        <ng-container *ngIf="product?.visibility == 'BAN' ">
+                            <p-tag severity="danger" value="Бан" />
+                            <!-- красная  -->
+                        </ng-container>
+                        <ng-container *ngIf="product?.visibility == 'EVERYBODY' ">
+                            <p-tag severity="info" value="Архив" />
+                            <!-- синяя -->
+                        </ng-container>
 
-                </td>
-                <td>
-                    <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
-                    <p-overlayPanel #op>
-                        <div class="btnsSetting">
-                            <p-button icon="pi pi-file" label="Подробнее" [rounded]="true" [text]="true"
-                                (click)="openInNewTab(viewCard(product.id))">
-                            </p-button>
+                    </td>
+                    <td>
+                        <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
+                        <p-overlayPanel #op>
+                            <div class="btnsSetting">
+                                <p-button icon="pi pi-file" label="Подробнее" [rounded]="true" [text]="true"
+                                    (click)="openInNewTab(viewCard(product.id))">
+                                </p-button>
 
-                            <p-button icon="pi pi-pencil" label="Изменить статус бана" [rounded]="true" [text]="true"
-                                (click)="editBan(product)" />
-                            <p-button icon="pi pi-times"
-                                [label]="product.visibility == 'BAN' ? 'Разблокировать' : 'Заблокировать'"
-                                [rounded]="true" [text]="true" severity="danger"
-                                (click)="setBanDialog(product);  op.hide()" />
-                            <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true"
-                                severity="danger" (click)="deleteCard(product.id)" />
-                        </div>
-                    </p-overlayPanel>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="paginator">
-            <p-paginator [rows]="rowsPerPage" [totalRecords]="totalUsers"
-                [rowsPerPageOptions]="[3, 10, 25, 50, 100]"></p-paginator>
-        </ng-template>
-    </p-table>
-
-    <app-forms *ngIf="listCardsService.visibleForm" [editData]="editData"></app-forms>
-
-</div>
-
-
-<div class="modal" *ngIf="isModalVisible">
-    <div class="modal-content">
-        <span class="close" (click)="closeModal()">&times;</span>
-        <h2>{{ selectCard ? 'Снять блокировку' : 'Заблокировать доступ' }}</h2>
-        <p>Вы уверены, что хотите {{ selectCard.visibility == 'BAN' ? 'снять блокировку' : 'заблокировать доступ' }} для
-            этого пользователя?
-        </p>
-        <ng-container *ngIf="selectCard.visibility !== 'BAN'">
-            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="banReason"
-                [ngClass]="{'error': isBanReasonInvalid}" (ngModelChange)="validateBanReason()"></textarea>
-            <div *ngIf="isBanReasonInvalid" class="error-message">Причина блокировки обязательна.</div>
-        </ng-container>
+                                <p-button icon="pi pi-pencil" label="Изменить статус бана" [rounded]="true"
+                                    [text]="true" (click)="editBan(product)" />
+                                <p-button icon="pi pi-times"
+                                    [label]="product.visibility == 'BAN' ? 'Разблокировать' : 'Заблокировать'"
+                                    [rounded]="true" [text]="true" severity="danger"
+                                    (click)="setBanDialog(product);  op.hide()" />
+                                <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true"
+                                    severity="danger" (click)="deleteCard(product.id)" />
+                            </div>
+                        </p-overlayPanel>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <!-- Loading spinner while fetching data -->
+        <div *ngIf="loading" class="loading-spinner">Loading...</div>
+        
+        <app-forms *ngIf="listCardsService.visibleForm" [editData]="editData"></app-forms>
+        
+        <div class="modal" *ngIf="isModalVisible">
+            <div class="modal-content">
+                <span class="close" (click)="closeModal()">&times;</span>
+                <h2>{{ selectCard ? 'Снять блокировку' : 'Заблокировать доступ' }}</h2>
+                <p>Вы уверены, что хотите {{ selectCard.visibility == 'BAN' ? 'снять блокировку' : 'заблокировать
+                    доступ' }} для
+                    этого пользователя?
+                </p>
+                <ng-container *ngIf="selectCard.visibility !== 'BAN'">
+                    <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="banReason"
+                        [ngClass]="{'error': isBanReasonInvalid}" (ngModelChange)="validateBanReason()"></textarea>
+                    <div *ngIf="isBanReasonInvalid" class="error-message">Причина блокировки обязательна.</div>
+                </ng-container>
 
 
-        <div class="btns">
+                <div class="btns">
 
-            <p-button icon="pi pi-pencil"
-                label="Да, {{ selectCard.visibility == 'BAN' ? 'снять блокировку' : 'заблокировать' }}" [rounded]="true"
-                [text]="true" (click)="banCard()" />
+                    <p-button icon="pi pi-pencil"
+                        label="Да, {{ selectCard.visibility == 'BAN' ? 'снять блокировку' : 'заблокировать' }}"
+                        [rounded]="true" [text]="true" (click)="banCard()" />
 
-            <p-button icon="pi pi-times" label="Отмена" [rounded]="true" [text]="true" severity="danger"
-                (click)="closeModal()" />
+                    <p-button icon="pi pi-times" label="Отмена" [rounded]="true" [text]="true" severity="danger"
+                        (click)="closeModal()" />
+                </div>
+
+
+            </div>
         </div>
-
-
     </div>
 </div>

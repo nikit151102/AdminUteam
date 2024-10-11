@@ -17,9 +17,10 @@ export class ResumesService {
   constructor(private http: HttpClient) { }
   private domain = `${environment.apiUrl}`;
 
-  getFunction(): Observable<any> {
-    return this.http.post<any>(`${this.domain}/resumes/getAll?page=0&size=1000`, this.body);
+  getFunction(page: any, rowsPerPage: any): Observable<any> {
+    return this.http.post<any>(`${this.domain}/vacancies/getAll?page=${page}&size=${rowsPerPage}`, this.body);
   }
+
 
   addFunction(vacancy: any): Observable<any> {
     return this.http.post<any>(`${this.domain}/tags`, vacancy, {
@@ -58,8 +59,8 @@ export class ResumesService {
     return this.http.put(`${this.domain}/resumes/${id}`, body, { headers });
   }
 
-  getData() {
-    this.getFunction().subscribe(
+  getData(page: any, rowsPerPage: any) {
+    this.getFunction(page, rowsPerPage).subscribe(
       (response: any[]) => {
         this.products = response;
       },

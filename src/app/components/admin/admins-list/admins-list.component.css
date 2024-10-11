@@ -8,7 +8,8 @@
 }
 
 .table-wrapper {
-    overflow-y: auto; /* Вертикальный скроллинг */
+    height: 100%;
+    overflow-y: auto; 
 }
 
 table {
