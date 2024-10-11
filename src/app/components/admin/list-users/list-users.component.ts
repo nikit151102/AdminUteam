@@ -47,7 +47,6 @@ export class ListUsersComponent {
       const max = element.scrollHeight;
   
       if (pos >= max - 50 && !this.loading) {
-        this.page++;
         this.loadUsers();
       }
     }
@@ -62,6 +61,8 @@ export class ListUsersComponent {
         if (response.length > 0) {
           this.users = [...(this.users || []), ...response];
           this.loading = false;
+          this.page++;
+          console.log("this.page",this.page)
           this.cd.detectChanges();
         } else {
           this.loading = false;
