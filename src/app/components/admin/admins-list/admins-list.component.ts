@@ -6,11 +6,12 @@ import { TableModule } from 'primeng/table';
 import { AdminsListService } from '../services/admins-list.service';
 import { Router, RouterModule } from '@angular/router';
 import { FormComponent } from './form/form.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'app-admins-list',
   standalone: true,
-  imports: [TableModule, CommonModule, PaginatorModule, ButtonModule, RouterModule, FormComponent],
+  imports: [TableModule, CommonModule, PaginatorModule, ButtonModule, RouterModule, FormComponent, OverlayPanelModule],
   templateUrl: './admins-list.component.html',
   styleUrl: './admins-list.component.css'
 })

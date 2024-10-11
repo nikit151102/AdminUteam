@@ -28,3 +28,9 @@ th {
     top: 0;
     z-index: 1;
 }
+
+.btnsSetting {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

@@ -5,26 +5,33 @@
         <p-table [value]="adminsListService.users" [sortField]="sortField" [sortOrder]="sortOrder">
             <ng-template pTemplate="header">
                 <tr>
-                    <th></th>
                     <th pSortableColumn="nickname" style="width:20%">Логин <p-sortIcon field="nickname" /></th>
                     <th pSortableColumn="firstName" style="width:15%">Имя <p-sortIcon field="firstName" /></th>
                     <th pSortableColumn="lastName" style="width:15%">Фамилия <p-sortIcon field="lastName" /></th>
                     <th pSortableColumn="telegram" style="width:15%">Телеграм <p-sortIcon field="telegram" /></th>
-                    <th pSortableColumn="dateOfRegistration" style="width:20%">Дата регистрации <p-sortIcon field="dateOfRegistration" /></th>
+                    <th pSortableColumn="dateOfRegistration" style="width:20%">Дата регистрации <p-sortIcon
+                            field="dateOfRegistration" /></th>
                     <th></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-user>
                 <tr>
-                    <td><a (click)="onUserClick($event, user)">Перейти</a></td>
                     <td>{{ user.nickname }}</td>
                     <td>{{ user.firstName }}</td>
                     <td>{{ user.lastName }}</td>
                     <td>{{ user.telegram }}</td>
                     <td>{{ user.dateOfRegistration | date: 'dd/MM/yyyy' }}</td>
                     <td>
-                        <p-button icon="pi pi-times" [text]="true" (click)="deleteUser(user)"
-                            [style]="{'color': 'red'}"></p-button>
+                        <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
+                        <p-overlayPanel #op>
+                            <div class="btnsSetting">
+                                <p-button icon="pi pi-file" label="Подробнее" [rounded]="true" [text]="true"
+                                    (click)="onUserClick($event, user)"> </p-button>
+                                <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true"
+                                    severity="danger" (click)="deleteUser(user)" />
+                            </div>
+                        </p-overlayPanel>
+
                     </td>
                 </tr>
             </ng-template>
