@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    
+
     .row {
         display: flex;
         flex-direction: row;
@@ -9,7 +9,7 @@
         gap: 10px;
         align-items: stretch;
     }
-    
+
     .column-40 {
         flex: 40%;
     }
@@ -20,13 +20,13 @@
 
     .cards-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
         padding-top: 20px;
 
-      }
-      
-      .card {
+    }
+
+    .card {
         background-color: #ffffff;
         border: 1px solid #e0e0e0;
         border-radius: 12px;
@@ -35,44 +35,46 @@
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
-      }
-      
-      .card:hover {
+    }
+
+    .card:hover {
         transform: translateY(-10px);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-      }
-      
-      .card-content i {
+    }
+
+    .card-content i {
         font-size: 2.5rem;
         color: #3498db;
-      }
-      
-      .card-content h3 {
+    }
+
+    .card-content h3 {
         font-size: 1.5rem;
         color: #2c3e50;
         margin-top: 10px;
-      }
-      
-      @media (max-width: 1200px) {
+    }
+
+    @media (max-width: 1200px) {
         .row {
-            flex-direction: column; 
+            flex-direction: column;
         }
 
-        .column-40, .column-60 {
+        .column-40,
+        .column-60 {
             flex: 100%;
         }
-        .adminsList{
+
+        .adminsList {
             display: none;
         }
     }
 
     @media (max-width: 1024px) {
         .cards-container {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
 
         .card-content i {
-            font-size: 2rem; 
+            font-size: 2rem;
         }
 
         .card-content h3 {
@@ -82,15 +84,15 @@
 
     @media (max-width: 768px) {
         .cards-container {
-            grid-template-columns: 1fr; 
+            grid-template-columns: repeat(2, 1fr);
         }
 
         .row {
-            flex-direction: column; 
+            flex-direction: column;
         }
 
         .card {
-            padding: 15px; 
+            padding: 15px;
         }
 
         .card-content i {
