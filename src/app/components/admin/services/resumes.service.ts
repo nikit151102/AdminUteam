@@ -18,7 +18,7 @@ export class ResumesService {
   private domain = `${environment.apiUrl}`;
 
   getFunction(page: any, rowsPerPage: any): Observable<any> {
-    return this.http.post<any>(`${this.domain}/vacancies/getAll?page=${page}&size=${rowsPerPage}`, this.body);
+    return this.http.post<any>(`${this.domain}/resumes/getAll?page=${page}&size=${rowsPerPage}`, this.body);
   }
 
 

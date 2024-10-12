@@ -164,14 +164,18 @@ export class ListCardsComponent {
   onRowCollapse(event: TableRowCollapseEvent) {
 
   }
-
+ 
+  
   viewCard(id: string) {
+    console.log("this.Service.type",this.Service.type)
     if (this.Service.type === "RESUME") {
-      localStorage.setItem('routeTypeCard', 'resumes');
-      return this.router.createUrlTree([`/resume`, id]).toString(); // You might not need this if you're handling URL strings
+      // localStorage.setItem('routeTypeCard', 'resumes');
+      // return this.router.createUrlTree([`/resume`, id]).toString(); // You might not need this if you're handling URL strings
+      return `https://uteam.top/resume/${id}`;
     } else {
-      localStorage.setItem('routeTypeCard', 'vacancies');
-      return this.router.createUrlTree([`/vacancy`, id]).toString(); // You might not need this if you're handling URL strings
+      // localStorage.setItem('routeTypeCard', 'vacancies');
+      // return this.router.createUrlTree([`/vacancy`, id]).toString(); // You might not need this if you're handling URL strings
+      return `https://uteam.top/vacancy/${id}`;
     }
   }
 

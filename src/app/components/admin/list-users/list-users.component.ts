@@ -81,10 +81,13 @@ export class ListUsersComponent {
     this.listUsersService.visibleForm = true;
   }
 
-  viewUser(nick: string):string  {
-    return this.router.createUrlTree([``, nick]).toString();
+  // viewUser(nick: string):string  {
+  //   return this.router.createUrlTree([``, nick]).toString();
+  // }
+  viewUser(nick: string): string {
+    return `https://uteam.top/${nick}`;
   }
-
+  
   selectUser: any;
 
   
