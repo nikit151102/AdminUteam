@@ -39,19 +39,18 @@ export class ListUsersComponent {
     this.loadUsers();
   }
   
-  @HostListener('scroll', ['$event'])
+  @HostListener('window:scroll', ['$event'])
   onTableScroll(event: any) {
-    if(!this.isAllCard){
-      const element = event.target;
-      const pos = element.scrollTop + element.offsetHeight;
+    if (!this.isAllCard && !this.loading) {
+      const element = document.scrollingElement || document.documentElement;
+      const pos = element.scrollTop + element.clientHeight;
       const max = element.scrollHeight;
   
-      if (pos >= max - 50 && !this.loading) {
+      if (pos >= max - 100) {
         this.loadUsers();
       }
     }
   }
-
 
  
   loadUsers() {
