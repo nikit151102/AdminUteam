@@ -39,7 +39,7 @@ export class ListUsersComponent {
     this.loadUsers();
   }
   
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('scroll', ['$event'])
   onTableScroll(event: any) {
     if (!this.isAllCard && !this.loading) {
       const element = document.scrollingElement || document.documentElement;
@@ -80,9 +80,7 @@ export class ListUsersComponent {
     this.listUsersService.visibleForm = true;
   }
 
-  // viewUser(nick: string):string  {
-  //   return this.router.createUrlTree([``, nick]).toString();
-  // }
+
   viewUser(nick: string): string {
     return `https://uteam.top/${nick}`;
   }
