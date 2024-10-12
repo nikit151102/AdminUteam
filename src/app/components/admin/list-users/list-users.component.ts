@@ -41,16 +41,18 @@ export class ListUsersComponent {
   
   @HostListener('scroll', ['$event'])
   onTableScroll(event: any) {
-    if (!this.isAllCard && !this.loading) {
-      const element = document.scrollingElement || document.documentElement;
-      const pos = element.scrollTop + element.clientHeight;
+    if(!this.isAllCard){
+      const element = event.target;
+      const pos = element.scrollTop + element.offsetHeight;
       const max = element.scrollHeight;
   
-      if (pos >= max - 100) {
+      if (pos >= max - 50 && !this.loading) {
+        this.page++;
         this.loadUsers();
       }
     }
   }
+
 
  
   loadUsers() {
@@ -60,7 +62,7 @@ export class ListUsersComponent {
         if (response.length > 0) {
           this.users = [...(this.users || []), ...response];
           this.loading = false;
-          this.page++;
+
           console.log("this.page",this.page)
           this.cd.detectChanges();
         } else {
@@ -80,7 +82,9 @@ export class ListUsersComponent {
     this.listUsersService.visibleForm = true;
   }
 
-
+  // viewUser(nick: string):string  {
+  //   return this.router.createUrlTree([``, nick]).toString();
+  // }
   viewUser(nick: string): string {
     return `https://uteam.top/${nick}`;
   }
