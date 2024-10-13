@@ -39,20 +39,24 @@ export class ListUsersComponent {
     this.loadUsers();
   }
   
-  @HostListener('scroll', ['$event'])
-  onTableScroll(event: any) {
-    if(!this.isAllCard){
-      const element = event.target;
-      const pos = element.scrollTop + element.offsetHeight;
-      const max = element.scrollHeight;
+  // onTableScroll(event: any) {
+  //   if(!this.isAllCard){
+  //     const element = event.target;
+  //     const pos = element.scrollTop + element.offsetHeight;
+  //     const max = element.scrollHeight;
   
-      if (pos >= max - 50 && !this.loading) {
-        this.page++;
-        this.loadUsers();
-      }
+  //     if (pos >= max - 50 && !this.loading) {
+  //       this.page++;
+  //       this.loadUsers();
+  //     }
+  //   }
+  // }
+  onTableScroll(event: any) {
+    const { scrollTop, scrollHeight, clientHeight } = event.target;
+    if (scrollTop + clientHeight >= scrollHeight - 20) {
+      this.loadUsers();
     }
   }
-
 
  
   loadUsers() {

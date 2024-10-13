@@ -1,6 +1,6 @@
 <div class="container">
 
-    <div #tableContainer class="table-wrapper" (scroll)="onTableScroll($event)">
+    <div class="table-wrapper" (scroll)="onTableScroll($event)">
         <p-table  [value]="users" [rows]="rowsPerPage" [sortField]="sortField" [sortOrder]="sortOrder" >
             <ng-template pTemplate="header">
                 <tr>
