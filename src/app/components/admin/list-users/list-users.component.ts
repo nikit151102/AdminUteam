@@ -70,13 +70,13 @@ export class ListUsersComponent {
     this.usersService.getFunction(this.page, this.rowsPerPage).subscribe(
       (response: any[]) => {
         if (response.length > 0) {
-          const newUsers = response.filter(newUser => 
-            !this.users.some(existingUser => existingUser.id === newUser.id)
-          );
+          // const newUsers = response.filter(newUser => 
+          //   !this.users.some(existingUser => existingUser.id === newUser.id)
+          // );
           
           // Используем NgZone для обновления представления
           this.zone.run(() => {
-            this.users = [...(this.users || []), ...newUsers];
+            this.users = [...(this.users || []), ...response];
             this.page++;
             this.loading = false;
           });
