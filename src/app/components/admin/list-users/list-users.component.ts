@@ -36,6 +36,7 @@ export class ListUsersComponent {
   constructor(public usersService: UsersService, private router: Router,  private cd: ChangeDetectorRef,  public listUsersService: ListUsersService) { }
 
   ngOnInit() {
+    this.page = 0;
     this.loadUsers();
   }
   
