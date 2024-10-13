@@ -53,11 +53,16 @@ export class ListUsersComponent {
   //   }
   // }
   onTableScroll(event: any) {
-    const { scrollTop, scrollHeight, clientHeight } = event.target;
-    if (scrollTop + clientHeight >= scrollHeight - 20) {
-      this.page++;
-      this.loadUsers();
-    }
+    if(!this.isAllCard){
+          const element = event.target;
+          const pos = element.scrollTop + element.offsetHeight;
+          const max = element.scrollHeight;
+      
+          if (pos >= max - 50 && !this.loading) {
+            this.page++;
+            this.loadUsers();
+          }
+        }
   }
 
  
