@@ -70,12 +70,19 @@ export class ListUsersComponent {
     this.loading = true;
     this.usersService.getFunction(this.page, this.rowsPerPage).subscribe(
       (response: any[]) => {
-        console.log("response",response)
+        console.log("response", response);
+        
         if (response.length > 0) {
-          this.users = [...(this.users || []), ...response];
+          // Фильтруем новых пользователей, исключая тех, кто уже есть в массиве this.users
+          const newUsers = response.filter(newUser => 
+            !this.users.some(existingUser => existingUser.id === newUser.id)
+          );
+          
+          // Добавляем только уникальных пользователей
+          this.users = [...(this.users || []), ...newUsers];
           this.loading = false;
-
-          console.log("this.page",this.page)
+  
+          console.log("this.page", this.page);
           this.page++;
           this.cd.detectChanges();
         } else {
@@ -89,6 +96,7 @@ export class ListUsersComponent {
       }
     );
   }
+  
 
   editUser(user: any) {
     this.selectedUser = user;
