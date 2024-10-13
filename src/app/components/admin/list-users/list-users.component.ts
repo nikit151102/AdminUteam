@@ -70,16 +70,18 @@ export class ListUsersComponent {
     this.loading = true;
     this.usersService.getFunction(this.page, this.rowsPerPage).subscribe(
       (response: any[]) => {
-        // if (response.length > 0) {
+        console.log("response",response)
+        if (response.length > 0) {
           this.users = [...(this.users || []), ...response];
           this.loading = false;
+
           console.log("this.page",this.page)
           this.page++;
           this.cd.detectChanges();
-        // } else {
-        //   this.loading = false;
-        //   this.isAllCard = true;
-        // }
+        } else {
+          this.loading = false;
+          this.isAllCard = true;
+        }
       },
       (error: any) => {
         console.error('Error fetching data:', error);
