@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, NgZone } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,7 @@ export class ListUsersComponent {
   loading = true;
   isAllCard: boolean = false;
 
-  constructor(public usersService: UsersService, private router: Router,  private cd: ChangeDetectorRef,  public listUsersService: ListUsersService) { }
+  constructor(public usersService: UsersService, private zone: NgZone,  private router: Router,  private cd: ChangeDetectorRef,  public listUsersService: ListUsersService) { }
 
   ngOnInit() {
     this.page = 0;
@@ -52,39 +52,34 @@ export class ListUsersComponent {
   //     }
   //   }
   // }
-  onTableScroll(event: any) {
-    if(!this.isAllCard){
-          const element = event.target;
-          const pos = element.scrollTop + element.offsetHeight;
-          const max = element.scrollHeight;
-      
-          if (pos >= max - 50 && !this.loading) {
-            
-            this.loadUsers();
-          }
-        }
-  }
 
+  onTableScroll(event: any) {
+    if (!this.isAllCard) {
+      const element = event.target;
+      const pos = element.scrollTop + element.offsetHeight;
+      const max = element.scrollHeight;
+  
+      if (pos >= max - 50 && !this.loading) {
+        this.loadUsers();
+      }
+    }
+  }
  
   loadUsers() {
     this.loading = true;
     this.usersService.getFunction(this.page, this.rowsPerPage).subscribe(
       (response: any[]) => {
-        console.log("response", response);
-        
         if (response.length > 0) {
-          // Фильтруем новых пользователей, исключая тех, кто уже есть в массиве this.users
           const newUsers = response.filter(newUser => 
             !this.users.some(existingUser => existingUser.id === newUser.id)
           );
           
-          // Добавляем только уникальных пользователей
-          this.users = [...(this.users || []), ...newUsers];
-          this.loading = false;
-  
-          console.log("this.page", this.page);
-          this.page++;
-          this.cd.detectChanges();
+          // Используем NgZone для обновления представления
+          this.zone.run(() => {
+            this.users = [...(this.users || []), ...newUsers];
+            this.page++;
+            this.loading = false;
+          });
         } else {
           this.loading = false;
           this.isAllCard = true;
@@ -95,8 +90,40 @@ export class ListUsersComponent {
         this.loading = false;
       }
     );
-  }
-  
+}
+
+//   loadUsers() {
+//     this.loading = true;
+//     this.usersService.getFunction(this.page, this.rowsPerPage).subscribe(
+//       (response: any[]) => {
+//         if (response.length > 0) {
+//           const newUsers = response.filter(newUser => 
+//             !this.users.some(existingUser => existingUser.id === newUser.id)
+//           );
+          
+//           this.users = [...(this.users || []), ...newUsers];
+
+//           // Обновляем представление сразу после изменения данных
+//           this.cd.detectChanges();
+
+//           this.page++;
+//           this.loading = false;
+//         } else {
+//           this.loading = false;
+//           this.isAllCard = true;
+//         }
+//       },
+//       (error: any) => {
+//         console.error('Error fetching data:', error);
+//         this.loading = false;
+//       }
+//     );
+// }
+
+trackByUserId(index: number, user: any): number {
+  return user.id;
+}
+
 
   editUser(user: any) {
     this.selectedUser = user;
