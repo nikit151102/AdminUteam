@@ -54,6 +54,7 @@ export class ListUsersComponent {
   onTableScroll(event: any) {
     const { scrollTop, scrollHeight, clientHeight } = event.target;
     if (scrollTop + clientHeight >= scrollHeight - 20) {
+      this.page++;
       this.loadUsers();
     }
   }
