@@ -1,0 +1,136 @@
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+    color: #444;
+  }
+  
+  .file-upload {
+    margin-bottom: 1rem;
+  }
+  
+  .hidden-input {
+    display: none;
+  }
+  
+  .custom-file-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .custom-file-label:hover {
+    background: #0056b3;
+  }
+  
+  .input-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 10px;
+  }
+  
+  .input-field {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .input-field:focus {
+    border-color: #007bff;
+  }
+  
+  .primary-btn {
+    padding: 0.5rem 1rem;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .primary-btn:hover {
+    background: #218838;
+  }
+  
+  .word-list {
+    margin-top: 2rem;
+  }
+  
+  .download-btn {
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .download-btn:hover {
+    background: #0056b3;
+  }
+  
+  .letter-group {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .letter-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+  
+  .word-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .word-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .word-text {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .delete-btn {
+    padding: 0.3rem 0.8rem;
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .delete-btn:hover {
+    background: #c82333;
+  }
+  

@@ -44,6 +44,10 @@ export class SidebarComponent implements OnInit {
       {
       label: 'Инструменты', icon: 'pi pi-cog', command: 'excelHandler'
     },
+    {
+      label: 'Слова исключения', icon: 'pi pi-cog', command: 'wordManager'
+    },
+    
     
     {
       label: 'Выйти', icon: 'pi pi-sign-out', command: 'exit'

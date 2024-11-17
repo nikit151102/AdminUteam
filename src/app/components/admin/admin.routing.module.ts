@@ -39,6 +39,9 @@ const routes: Routes = [
       {
         path: 'excelHandler', loadChildren: () => import('./app-excel-handler/app-excel-handler.module').then(m => m.AppExcelHandlerModule)
       },
+      {
+        path: 'wordManager', loadChildren: () => import('./word-manager/word-manager.module').then(m => m.WordManagerModule)
+      },
     ]
   },
   

@@ -60,26 +60,30 @@ export class ListUsersComponent {
       const max = element.scrollHeight;
   
       if (pos >= max - 50 && !this.loading) {
+        this.page++;
         this.loadUsers();
       }
     }
   }
  
+
   loadUsers() {
     this.loading = true;
     this.usersService.getFunction(this.page, this.rowsPerPage).subscribe(
       (response: any[]) => {
         if (response.length > 0) {
-          // const newUsers = response.filter(newUser => 
-          //   !this.users.some(existingUser => existingUser.id === newUser.id)
-          // );
+          const newUsers = response.filter(newUser => 
+            !this.users.some(existingUser => existingUser.id === newUser.id)
+          );
           
-          // Используем NgZone для обновления представления
-          this.zone.run(() => {
-            this.users = [...(this.users || []), ...response];
-            this.page++;
-            this.loading = false;
-          });
+          this.users = [...(this.users || []), ...newUsers];
+          console.log(" response",response)
+          console.log(" this.page",this.page)
+          // Обновляем представление сразу после изменения данных
+          this.cd.detectChanges();
+
+         
+          this.loading = false;
         } else {
           this.loading = false;
           this.isAllCard = true;
@@ -92,33 +96,6 @@ export class ListUsersComponent {
     );
 }
 
-//   loadUsers() {
-//     this.loading = true;
-//     this.usersService.getFunction(this.page, this.rowsPerPage).subscribe(
-//       (response: any[]) => {
-//         if (response.length > 0) {
-//           const newUsers = response.filter(newUser => 
-//             !this.users.some(existingUser => existingUser.id === newUser.id)
-//           );
-          
-//           this.users = [...(this.users || []), ...newUsers];
-
-//           // Обновляем представление сразу после изменения данных
-//           this.cd.detectChanges();
-
-//           this.page++;
-//           this.loading = false;
-//         } else {
-//           this.loading = false;
-//           this.isAllCard = true;
-//         }
-//       },
-//       (error: any) => {
-//         console.error('Error fetching data:', error);
-//         this.loading = false;
-//       }
-//     );
-// }
 
 trackByUserId(index: number, user: any): number {
   return user.id;
