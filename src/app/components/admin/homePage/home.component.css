@@ -28,10 +28,9 @@
 
     .card {
         background-color: #ffffff;
-        border: 1px solid #e0e0e0;
-        border-radius: 12px;
+        border-radius: 40px;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        padding: 20px;
+        padding: 15px;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
@@ -48,7 +47,7 @@
     }
 
     .card-content h3 {
-        font-size: 1.5rem;
+        font-size: 15px;
         color: #2c3e50;
         margin-top: 10px;
     }

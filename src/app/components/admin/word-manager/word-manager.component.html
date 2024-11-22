@@ -1,18 +1,6 @@
 <div class="container">
     <h2>Управление словами</h2>
   
-    <!-- Загрузка JSON файла -->
-    <div class="file-upload">
-      <label for="file-input" class="custom-file-label">Загрузить JSON</label>
-      <input
-        type="file"
-        id="file-input"
-        class="hidden-input"
-        (change)="onFileUpload($event)"
-        accept=".json"
-      />
-    </div>
-  
     <!-- Поле для добавления нового слова -->
     <div class="input-group">
       <input
@@ -34,24 +22,22 @@
         (input)="filterWords()"
       />
     </div>
-  
-    <!-- Списки слов по буквам -->
-    <div class="word-list" *ngIf="filteredData">
-      <button class="download-btn" (click)="downloadJSON()">Скачать JSON</button>
-      <div *ngFor="let item of filteredData" class="letter-group">
-        <h3 class="letter-title">{{ item.letter.toUpperCase() }}</h3>
-        <ul class="word-ul">
-          <li *ngFor="let word of item.words; let j = index" class="word-item">
-            <span class="word-text">{{ word }}</span>
-            <button
-              class="delete-btn"
-              (click)="deleteWord(item.letter, j)"
-            >
-              Удалить
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <button pButton type="button" label="Загрузить данные на сервер" (click)="uploadJSON()"></button>
+
+    <button pButton type="button" label="Скачать файл" (click)="downloadFileFromBackend()"></button>
+
+    <p-accordion [activeIndex]="0">
+      <ng-container *ngFor="let item of filteredData">
+        <p-accordionTab [header]="item.letter.toUpperCase()">
+          <ul class="word-ul">
+            <li *ngFor="let word of item.words; let j = index" class="word-item">
+              <span class="word-text">{{ word }}</span>
+              <p-button icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" [severity]="'danger' "
+              (click)="deleteWord(item.letter, j)" />
+            </li>
+          </ul>
+        </p-accordionTab>
+      </ng-container>
+  </p-accordion>
   </div>
   

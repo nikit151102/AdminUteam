@@ -1,12 +1,12 @@
 .sidebar {
-  width: 78px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 12px;
+  margin: 10px;
+  background: #fff;
+  border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 12px;
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 98%;
   -moz-box-shadow: -2px 0px 7px -5px rgba(34, 60, 80, 0.6) inset;
   z-index: 100;
   transition: all 0.5s ease;
@@ -18,7 +18,8 @@
 
 .sidebar .logo-details {
   height: 60px;
-  width: 100%;
+  width: 90%;
+  padding-left: 10px;
   display: flex;
   align-items: center;
 }
@@ -41,10 +42,13 @@
   position: relative;
   list-style: none;
   transition: all 0.4s ease;
+  margin: 0 10px 0 0;
+  border-radius: 20px;
 }
 
 .sidebar .nav-links li:hover {
-  background: #b8b8b8;
+  margin: 0 10px 0 10px;
+  background: var(--bg-gray-3);
 }
 
 .sidebar .nav-links li .iocn-link {
@@ -63,7 +67,7 @@
   text-align: center;
   line-height: 50px;
   color: #1d1b31;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -83,7 +87,7 @@
 }
 
 .sidebar .nav-links li a .link_name {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   color: #1d1b31;
   transition: all 0.4s ease;
