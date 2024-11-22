@@ -20,7 +20,7 @@ export class WordManagerService {
 
   
   overwriteFile(file: File): Observable<any> {
-    const url = `${this.apiUrl}/overwrite`;
+    const url = `${this.apiUrl}/overwriteFile`;
     const formData = new FormData();
     formData.append('file', file);
 
