@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WordManagerService {
-  private apiUrl = 'https://ucumand.ru/logs/files';  
+  private apiUrl = 'https://ucomand.ru/logs/files';  
 
   constructor(private http: HttpClient) { }
 
