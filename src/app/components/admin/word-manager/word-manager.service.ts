@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WordManagerService {
-  private apiUrl = 'https://ucomand.ru/logs/files';  
-
+  //private apiUrl = 'https://ucomand.ru/logs/files'; 
+  private apiUrl = 'http://127.0.0.1:8000/files'; 
+  
   constructor(private http: HttpClient) { }
 
   getFile(filename: string): Observable<Blob> {

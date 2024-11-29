@@ -39,7 +39,7 @@
                     <td>{{ product?.profession?.name }}</td>
                     <td>{{ product.creationDate | date: 'dd/MM/yyyy' }}</td>
                     <td>
-                        <ng-container *ngIf="product?.visibility == 'CREATOR_ONLY' ">
+                        <ng-container *ngIf="product?.visibility == 'EVERYBODY' ">
                             <p-tag severity="success" value="Активная" />
                             <!-- зеленая -->
                         </ng-container>
@@ -47,7 +47,7 @@
                             <p-tag severity="danger" value="Бан" />
                             <!-- красная  -->
                         </ng-container>
-                        <ng-container *ngIf="product?.visibility == 'EVERYBODY' ">
+                        <ng-container *ngIf="product?.visibility == 'CREATOR_ONLY' ">
                             <p-tag severity="info" value="Архив" />
                             <!-- синяя -->
                         </ng-container>
